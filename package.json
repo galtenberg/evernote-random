@@ -1,0 +1,39 @@
+{
+  "name": "create-react-app-fullstack",
+  "version": "0.1.10",
+  "private": true,
+  "dependencies": {
+    "axios": "^0.16.2",
+    "body-parser": "^1.17.2",
+    "classnames": "^2.2.5",
+    "concurrently": "^3.5.0",
+    "debug": "^3.0.0",
+    "express": "^4.15.4",
+    "morgan": "^1.8.2",
+    "nodemon": "^1.11.0",
+    "react": "^15.6.1",
+    "react-dom": "^15.6.1",
+    "react-redux": "^5.0.6",
+    "react-router-dom": "^4.1.2",
+    "react-router-redux": "^4.0.8",
+    "redux": "^3.7.2",
+    "redux-logger": "^3.0.6",
+    "redux-thunk": "^2.2.0",
+    "yargs": "^8.0.2"
+  },
+  "scripts": {
+    "start": "concurrently \"react-scripts start\" \"nodemon server\"",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  },
+  "devDependencies": {
+    "path": "^0.12.7",
+    "react-dev-utils": "^3.1.1",
+    "react-scripts": "0.9.5"
+  },
+  "engines": {
+    "node": "8.x"
+  },
+  "proxy": "http://create-react-app-fullstack.glitch.me"
+}
