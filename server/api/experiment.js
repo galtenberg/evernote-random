@@ -15,7 +15,7 @@ module.exports = (api) => {
     res.status(200).send(result)
   })
 
-  api.get('/api/redirect-me', (req, res) => {
+  api.get('/redirect-me', (req, res) => {
     res.json('http://cnn.com')
   })
 }

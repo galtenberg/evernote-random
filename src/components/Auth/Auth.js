@@ -1,17 +1,14 @@
 import React, { Component } from 'react';
 import classnames from 'classnames';
 
+const f = { credentials: 'same-origin' }
+
 import './style.css';
 
 export default class Auth extends Component {
   async componentDidMount() {
-    console.log(`CG in componentDidMount`)
-    const response = await fetch('/en-auth/new')
-    //const response = await fetch('/api/redirect-me')
-    console.log(`response: ${JSON.stringify(response)}`)
-    //console.log(`responseJson: ${await response.json()}`)
+    const response = await fetch('/en-auth/new', f)
     const loginPage = await response.json()
-    console.log(`loginPage: ${loginPage}`)
     window.location = loginPage
   }
 

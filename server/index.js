@@ -17,7 +17,7 @@ app.use(bodyParser.json())
 app.use(express.static(path.resolve(__dirname, '..', 'build')))
 
 app.use(cookieSession({
-  name: 'session',
+  name: 'evernoteSolitaire',
   secret: 'evernote-sandbox-secret',
   maxAge: 30 * 24 * 60 * 60 * 1000 // 1 month
 }))
@@ -25,8 +25,8 @@ app.use(cookieSession({
 //require('./api/experiment')(app)
 require('./api/auth')(app)
 
-const PORT = process.env.PORT || 8000;
+const PORT = process.env.PORT || 8000
 
 app.listen(PORT, () => {
-  console.log(`App listening on port ${PORT}!`);
-});
+  console.log(`express server listening on port ${PORT}`);
+})

@@ -15,6 +15,7 @@
     "nodemon": "^1.11.0",
     "passport": "^0.4.0",
     "passport-evernote": "^1.0.1",
+    "query-string": "^5.0.0",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
     "react-redux": "^5.0.6",
@@ -23,11 +24,13 @@
     "redux": "^3.7.2",
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.2.0",
+    "rxjs": "^5.4.3",
     "yargs": "^8.0.2"
   },
   "scripts": {
-    "start": "concurrently \"react-scripts start\" \"nodemon server\"",
-    "start-node": "nodemon server",
+    "start": "concurrently \"npm run client\" \"npm run server\"",
+    "client": "react-scripts start",
+    "server": "nodemon server",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
