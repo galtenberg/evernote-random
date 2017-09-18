@@ -1,13 +1,13 @@
-import React, { Component } from 'react';
-import classnames from 'classnames';
+import React, { Component } from 'react'
+import classnames from 'classnames'
 
-const f = { credentials: 'same-origin' }
+const { fetchCred } = require('../../../config/config')
 
 import './style.css';
 
 export default class Auth extends Component {
   async componentDidMount() {
-    const response = await fetch('/en-auth/new', f)
+    const response = await fetch('/en-auth/new', fetchCred)
     const loginPage = await response.json()
     window.location = loginPage
   }
