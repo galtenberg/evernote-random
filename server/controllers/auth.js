@@ -36,5 +36,5 @@ exports.isLoggedIn = (req, res) => {
 
 exports.logout = (req, res) => {
   req.session = null
-  res.redirect('/')
+  res.status(200).json(true)
 }

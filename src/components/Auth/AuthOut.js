@@ -9,7 +9,8 @@ import './style.css'
 
 export default class AuthOut extends Component {
   async componentDidMount() {
-    await fetch('/logout', fetchCred)
+    const response = await fetch('/logout', fetchCred)
+    await response.json()
     window.location = '/'
   }
 
