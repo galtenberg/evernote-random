@@ -28,5 +28,5 @@ require('./api/auth')(app)
 const PORT = process.env.PORT || 8000
 
 app.listen(PORT, () => {
-  console.log(`express server listening on port ${PORT}`);
+  console.log(`express server listening on port ${PORT}`)
 })

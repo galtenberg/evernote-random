@@ -17,19 +17,24 @@ exports.callback = (req, res) => {
   let oauthVerifier = req.query.oauth_verifier;
   if (!oauthVerifier) {
     res.sendStatus(400)
-    return;
+    return
   }
 
   enAuth.getAccessTokenObservable(req.session.oauthToken, req.session.oauthTokenSecret, oauthVerifier)
   .subscribe((token) => {
     req.session.accessToken = token
-    res.status(200).json("Success")
+    res.status(200).json(true)
   }, (error) => {
-    res.sendStatus(400);
-  });
-};
+    res.sendStatus(400)
+  })
+}
+
+exports.isLoggedIn = (req, res) => {
+  // TODO Also check oauth and access tokens against Evernote API?
+  res.status(200).json(!!(req.session && req.session.oauthToken))
+}
 
 exports.logout = (req, res) => {
-  req.session = null;
-  res.redirect('/');
-};
+  req.session = null
+  res.redirect('/')
+}
