@@ -24,6 +24,6 @@ export default class AuthCallback extends Component {
       <div className={classnames('Auth', this.props.className)}>
         Redirecting to Evernote Solitaire...
       </div>
-    );
+    )
   }
 }

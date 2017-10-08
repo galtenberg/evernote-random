@@ -1,7 +1,9 @@
-import React, { Component } from 'react';
-import classnames from 'classnames';
-import { Link } from 'react-router-dom';
-import './style.css';
+import React, { Component } from 'react'
+import classnames from 'classnames'
+import { Link } from 'react-router-dom'
+import './style.css'
+
+import Notebooks from '../Notes/Notebooks'
 
 const { fetchCred } = require('../../../config/config')
 
@@ -21,11 +23,11 @@ class App extends Component {
   }
 
   render() {
-    var authButton;
+    var authButton
     if (this.state.loggedIn) {
       authButton = <Link to='authout'><button>Logout</button></Link>
     } else {
-      authButton = <Link to='auth'><button>Login</button></Link>;
+      authButton = <Link to='auth'><button>Login</button></Link>
     }
 
     return (
@@ -33,9 +35,11 @@ class App extends Component {
         {authButton}
         <div>Logged In {JSON.stringify(this.state.loggedIn)}</div>
         {/*<button onClick={this.props.actions.expressTest}>Test if Express is working (see console for result)</button>*/}
+
+        <Notebooks/>
       </div>
     )
   }
 }
 
-export default App;
+export default App

@@ -1,9 +1,9 @@
-module.exports = (app) => {
+module.exports = (auth_routes) => {
   const auth = require('../controllers/auth')
 
-  app.get('/en-auth/new', auth.new)
-  app.get('/en-auth/callback', auth.callback)
+  auth_routes.get('/en-auth/new', auth.new)
+  auth_routes.get('/en-auth/callback', auth.callback)
 
-  app.get('/isLoggedIn', auth.isLoggedIn)
-  app.get('/logout', auth.logout)
+  auth_routes.get('/isLoggedIn', auth.isLoggedIn)
+  auth_routes.get('/logout', auth.logout)
 }

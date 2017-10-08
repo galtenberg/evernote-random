@@ -24,6 +24,7 @@ app.use(cookieSession({
 
 //require('./api/experiment')(app)
 require('./api/auth')(app)
+require('./api/notes')(app)
 
 const PORT = process.env.PORT || 8000
 
