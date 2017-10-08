@@ -31,6 +31,7 @@ export default class Notebooks extends Component {
     const notebooks = this.state.notebooks || []
     return (
       <div>
+        { /* j(notebooks) */ }
         { this.renderNotebooks(notebooks) }
       </div>
     )

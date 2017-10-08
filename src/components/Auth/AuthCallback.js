@@ -13,7 +13,10 @@ export default class AuthCallback extends Component {
     const parsed = queryString.parse(this.props.location.search)
     const url = new URL('/en-auth/callback', rootUrl)
     const params = { oauth_verifier: parsed.oauth_verifier, oauth_token: parsed.oauth_token }
-    Object.keys(params).forEach(key => url.searchParams.append(key, params[key]))
+
+    Object.keys(params)
+      .forEach(key => url.searchParams.append(key, params[key]))
+
     const response = await fetch(url, fetchCred)
     await response.json()
     window.location = '/'
