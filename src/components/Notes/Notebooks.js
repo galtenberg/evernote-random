@@ -4,7 +4,7 @@ import React, { Component } from 'react'
 
 import Notebook from './Notebook'
 
-const { fetchCred, j } = require('../../../config/config')
+const { fetchCred } = require('../../../config/config')
 
 export default class Notebooks extends Component {
   constructor() {
@@ -21,6 +21,7 @@ export default class Notebooks extends Component {
   renderNotebook = (notebook) =>
     <Notebook
       name={notebook.name}
+      key={notebook.guid}
       guid={notebook.guid}
     />
 
@@ -31,6 +32,7 @@ export default class Notebooks extends Component {
     const notebooks = this.state.notebooks || []
     return (
       <div>
+        Choose a notebook:
         { /* j(notebooks) */ }
         { this.renderNotebooks(notebooks) }
       </div>

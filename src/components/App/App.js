@@ -23,20 +23,24 @@ class App extends Component {
   }
 
   render() {
-    var authButton
+    var authButton, notebooks
     if (this.state.loggedIn) {
       authButton = <Link to='authout'><button>Logout</button></Link>
+      notebooks = <Notebooks/>
     } else {
       authButton = <Link to='auth'><button>Login</button></Link>
+      notebooks = <div>Welcome. Login to see your notebooks.</div>
     }
 
     return (
       <div className={classnames('App', this.props.className)}>
         {authButton}
-        <div>Logged In {JSON.stringify(this.state.loggedIn)}</div>
+        {/*<div>Logged In {JSON.stringify(this.state.loggedIn)}</div>*/}
         {/*<button onClick={this.props.actions.expressTest}>Test if Express is working (see console for result)</button>*/}
 
-        <Notebooks/>
+        <hr/>
+        {notebooks}
+        <hr/>
       </div>
     )
   }

@@ -12,12 +12,16 @@ export default class Notebook extends Component {
   //componentDidMount() {
   //}
 
+  handleClick = () => {
+    console.log('guid:', this.props.guid);
+  }
+
   render() {
-    const { guid, name } = this.props
+    const { name } = this.props
     return (
-      <div id={guid}>
+      <button onClick={this.handleClick}>
       { name }
-      </div>
+      </button>
     )
   }
 }
