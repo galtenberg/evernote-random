@@ -40,7 +40,6 @@ class App extends Component {
 
         <hr/>
         {notebooks}
-        <hr/>
       </div>
     )
   }

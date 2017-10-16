@@ -9,7 +9,10 @@ const { fetchCred } = require('../../../config/config')
 export default class Notebooks extends Component {
   constructor() {
     super()
-    this.state = { notebooks: 0 }
+    this.state = {
+      notebooks: [],
+      notes: []
+    }
   }
 
   async componentDidMount() {
@@ -18,23 +21,42 @@ export default class Notebooks extends Component {
     if (notebooks) { this.setState({ notebooks: notebooks }) }
   }
 
+  async fetchNotes() {
+    const response = await fetch('/notes', fetchCred)
+    const notes = await response.json()
+    if (notes) { this.setState({ notes: notes }) }
+  }
+
+  notebookChanged = (guid) => {
+    this.setState({ notes: [] })
+    this.fetchNotes(); //console.log(`in notebookChanged ${guid}`)
+  }
+
+  renderNotebooks = (notebooks) =>
+    notebooks.map(notebook => this.renderNotebook(notebook))
+
   renderNotebook = (notebook) =>
     <Notebook
       name={notebook.name}
       key={notebook.guid}
       guid={notebook.guid}
+      notebookChanged={this.notebookChanged}
     />
 
-  renderNotebooks = (notebooks) =>
-    notebooks.map(notebook => this.renderNotebook(notebook))
+  renderNotes = (notes) =>
+    <div>{JSON.stringify(notes)}</div>
 
   render() {
-    const notebooks = this.state.notebooks || []
+    //const notebooks = this.state.notebooks || []
+    //const notes = this.state.notes || []
     return (
       <div>
-        Choose a notebook:
-        { /* j(notebooks) */ }
-        { this.renderNotebooks(notebooks) }
+        <div>
+          Choose a notebook:
+          { this.renderNotebooks(this.state.notebooks) }
+        </div>
+        <hr/>
+        { this.state.notes }
       </div>
     )
   }

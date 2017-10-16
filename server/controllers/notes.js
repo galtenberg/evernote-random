@@ -1,14 +1,16 @@
-const evernote = require('../lib/evernote/evernote');
+const evernote = require('../lib/evernote/evernote')
 //var printObject = require('print-object');
+const debug = require('debug')('cg')
 
-//function notes(req, res) {
 async function notebooks(req, res) {
   const notebooks = await evernote.notebooks(req.session.accessToken)
-  //const notes = await evernote.notesMetadata(req.session.accessToken)
+  res.status(200).json(notebooks)
+}
 
-  //res.status(200).json(mockNotes());
-  //res.render('notes', { notebooks: notebooks, notes: notes, token: req.session.accessToken})
-  res.status(200).json(notebooks);
+async function notes(req, res) {
+  const notes = await evernote.notesMetadata(req.session.accessToken)
+  //debug(notes)
+  res.status(200).json(notes)
 }
 
 function mockNotes() {
@@ -19,4 +21,5 @@ function mockNotes() {
   ]
 }
 
-exports.notebooks = notebooks;
+exports.notebooks = notebooks
+exports.notes = notes

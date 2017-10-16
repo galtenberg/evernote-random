@@ -13,7 +13,7 @@ export default class Notebook extends Component {
   //}
 
   handleClick = () => {
-    console.log('guid:', this.props.guid);
+    this.props.notebookChanged(this.props.guid);
   }
 
   render() {

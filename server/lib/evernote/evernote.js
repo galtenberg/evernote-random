@@ -1,4 +1,4 @@
-'use strict'
+//'use strict'
 
 const Evernote = require('evernote')
 const enAuth = require('./en-auth')
@@ -8,7 +8,7 @@ exports.notebooks = (token) => {
   return client.getNoteStore().listNotebooks()
 }
 
-exports.notesMetadata = token => {
+async function notesMetadata(token) {
   const client = enAuth.createAuthenticatedClient(token)
   const noteStore = client.getNoteStore()
 
@@ -25,22 +25,29 @@ exports.notesMetadata = token => {
   var spec = new Evernote.NoteStore.NotesMetadataResultSpec()
   for (var p in spec) { if (p.indexOf('include') !== -1) { spec[p] = true } }
 
-  const noteGuids = noteStore.findNotesMetadata(filter, offset, maxNotes, spec)
+  const noteGuids = await noteStore.findNotesMetadata(filter, offset, maxNotes, spec)
   //.then(notesMetadata => notesMetadata)
   .then(notesMetadata => notesMetadata.notes.map(n => n.guid))
+  //.then(notesGuids => noteGuids[1])
   .catch(err => [])
 
   //return spec
+  //return noteGuids[1]
 
-  //return noteGuids
   //for (var p in spec) { if (p.indexOf('include') !== -1) { spec[p] = true } }
 
-  return noteStore.getNote("6cb3439c-8f85-45a2-8be6-cad30e55375a", true, true, true, true)
+  const randomNoteIndex = getRandomInt(0, noteGuids.length)
+  //return noteGuids[randomNoteIndex]
+
+  //return noteStore.getNote("6cb3439c-8f85-45a2-8be6-cad30e55375a", true, true, true, true)
+  return noteStore.getNote(noteGuids[randomNoteIndex], true, true, true, true)
   .then(note => note.content).catch(err => err)
 
-  return noteStore.getNoteWithResultSpec("6cb3439c-8f85-45a2-8be6-cad30e55375a", spec)
-  .then(note => note).catch(err => err)
+  //return noteStore.getNoteWithResultSpec("6cb3439c-8f85-45a2-8be6-cad30e55375a", spec)
+  //.then(note => note).catch(err => err)
 }
+
+exports.notesMetadata = notesMetadata
 
 function getRandomInt (min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
