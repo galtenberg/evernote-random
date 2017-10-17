@@ -4,7 +4,7 @@ import React, { Component } from 'react'
 
 import Notebook from './Notebook'
 
-const { fetchCred } = require('../../../config/config')
+const { fetchCred, rootUrl } = require('../../../config/config')
 
 export default class Notebooks extends Component {
   constructor() {
@@ -21,15 +21,21 @@ export default class Notebooks extends Component {
     if (notebooks) { this.setState({ notebooks: notebooks }) }
   }
 
-  async fetchNotes() {
-    const response = await fetch('/notes', fetchCred)
+  async fetchNotes(guid) {
+    const url = new URL('/notes', rootUrl)
+    const params = { guid }
+    Object.keys(params).forEach(key => url.searchParams.append(key, params[key]))
+
+    console.log(`CG in fetchNotes, url = ${url}`)
+
+    const response = await fetch(url, fetchCred)
     const notes = await response.json()
     if (notes) { this.setState({ notes: notes }) }
   }
 
   notebookChanged = (guid) => {
     this.setState({ notes: [] })
-    this.fetchNotes(); //console.log(`in notebookChanged ${guid}`)
+    this.fetchNotes(guid)
   }
 
   renderNotebooks = (notebooks) =>

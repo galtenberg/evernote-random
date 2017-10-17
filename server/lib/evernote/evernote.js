@@ -8,12 +8,13 @@ exports.notebooks = (token) => {
   return client.getNoteStore().listNotebooks()
 }
 
-async function notesMetadata(token) {
+async function notesMetadata(guid, token) {
   const client = enAuth.createAuthenticatedClient(token)
   const noteStore = client.getNoteStore()
 
   const filter = new Evernote.NoteStore.NoteFilter()
-  filter.notebookGuid = 'efa61084-ee95-4e47-a8d0-be81a4b1c658'
+  //filter.notebookGuid = 'efa61084-ee95-4e47-a8d0-be81a4b1c658'
+  filter.notebookGuid = guid
 
   const noteCount = noteStore.findNoteCounts(token, filter)
   .then(count => count['notebookCounts'][filter.notebookGuid])

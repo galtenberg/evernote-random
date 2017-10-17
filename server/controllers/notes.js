@@ -8,8 +8,7 @@ async function notebooks(req, res) {
 }
 
 async function notes(req, res) {
-  const notes = await evernote.notesMetadata(req.session.accessToken)
-  //debug(notes)
+  const notes = await evernote.notesMetadata(req.query.guid, req.session.accessToken)
   res.status(200).json(notes)
 }
 
