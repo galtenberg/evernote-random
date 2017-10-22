@@ -1,6 +1,9 @@
 import React, { Component } from 'react'
-//import classnames from 'classnames'
-//import './style.css'
+import classnames from 'classnames'
+import './style.css'
+
+const enml = require('enml-js')
+import renderHTML from 'react-render-html'
 
 const { fetchCred, rootUrl } = require('../../../config/config')
 
@@ -29,9 +32,10 @@ export default class Note extends Component {
 
   render() {
     this.fetchNote(this.state.notebookGuid)
+    const enmlNote = enml.HTMLOfENML(this.state.note)
     return (
-      <div>
-        { JSON.stringify(this.state.note) }
+      <div className={classnames('Note', this.props.className)}>
+        { renderHTML(enmlNote) }
       </div>
     )
   }

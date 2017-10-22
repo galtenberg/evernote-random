@@ -34,7 +34,7 @@ class App extends Component {
 
     return (
       <div className={classnames('App', this.props.className)}>
-        {authButton}
+        <b>BASB RandomNote</b> {authButton}
         {/*<div>Logged In {JSON.stringify(this.state.loggedIn)}</div>*/}
         {/*<button onClick={this.props.actions.expressTest}>Test if Express is working (see console for result)</button>*/}
 
