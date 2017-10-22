@@ -46,7 +46,7 @@ export default class Notebooks extends Component {
     return (
       <div>
         <div>
-          Choose a notebook:
+          Choose a notebook:&nbsp;
           { this.renderNotebooks(this.state.notebooks) }
         </div>
         <hr/>
