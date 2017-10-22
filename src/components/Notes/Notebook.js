@@ -5,13 +5,6 @@ import React, { Component } from 'react'
 //const { fetchCred, j } = require('../../../config/config')
 
 export default class Notebook extends Component {
-  //constructor() {
-    //super()
-  //}
-
-  //componentDidMount() {
-  //}
-
   handleClick = () => {
     this.props.notebookChanged(this.props.guid);
   }

@@ -3,39 +3,31 @@ import React, { Component } from 'react'
 //import './style.css'
 
 import Notebook from './Notebook'
+import Note from './Note'
 
-const { fetchCred, rootUrl } = require('../../../config/config')
+const { fetchCred } = require('../../../config/config')
 
 export default class Notebooks extends Component {
   constructor() {
     super()
     this.state = {
       notebooks: [],
-      notes: []
+      notebookGuid: null
     }
   }
 
   async componentDidMount() {
-    const response = await fetch('/notebooks', fetchCred)
-    const notebooks = await response.json()
+    var response, notebooks
+    //try {
+    response = await fetch('/notebooks', fetchCred)
+    notebooks = await response.json()
+    //} catch (err) { console.log(err); return; }
     if (notebooks) { this.setState({ notebooks: notebooks }) }
   }
 
-  async fetchNotes(guid) {
-    const url = new URL('/notes', rootUrl)
-    const params = { guid }
-    Object.keys(params).forEach(key => url.searchParams.append(key, params[key]))
-
-    console.log(`CG in fetchNotes, url = ${url}`)
-
-    const response = await fetch(url, fetchCred)
-    const notes = await response.json()
-    if (notes) { this.setState({ notes: notes }) }
-  }
-
-  notebookChanged = (guid) => {
-    this.setState({ notes: [] })
-    this.fetchNotes(guid)
+  notebookChanged = (notebookGuid) => {
+    console.log("CG in Notebooks::notebookChanged")
+    this.setState({ notebookGuid })
   }
 
   renderNotebooks = (notebooks) =>
@@ -49,12 +41,8 @@ export default class Notebooks extends Component {
       notebookChanged={this.notebookChanged}
     />
 
-  renderNotes = (notes) =>
-    <div>{JSON.stringify(notes)}</div>
-
   render() {
     //const notebooks = this.state.notebooks || []
-    //const notes = this.state.notes || []
     return (
       <div>
         <div>
@@ -62,7 +50,9 @@ export default class Notebooks extends Component {
           { this.renderNotebooks(this.state.notebooks) }
         </div>
         <hr/>
-        { this.state.notes }
+        <Note
+          notebookGuid={this.state.notebookGuid}
+        />
       </div>
     )
   }
