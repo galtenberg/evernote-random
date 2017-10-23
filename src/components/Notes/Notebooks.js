@@ -1,6 +1,4 @@
 import React, { Component } from 'react'
-//import classnames from 'classnames'
-//import './style.css'
 
 import Notebook from './Notebook'
 import Note from './Note'
@@ -18,10 +16,10 @@ export default class Notebooks extends Component {
 
   async componentDidMount() {
     var response, notebooks
-    //try {
+
     response = await fetch('/notebooks', fetchCred)
     notebooks = await response.json()
-    //} catch (err) { console.log(err); return; }
+
     if (notebooks) { this.setState({ notebooks: notebooks }) }
   }
 
@@ -42,7 +40,6 @@ export default class Notebooks extends Component {
     />
 
   render() {
-    //const notebooks = this.state.notebooks || []
     return (
       <div>
         <div>

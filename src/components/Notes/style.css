@@ -4,7 +4,25 @@
   display: block;
   margin-left: auto;
   margin-right: auto;
+  margin-top: 20px;
   padding: 20px;
   text-align: left;
   background-color: #f8f8f8;
+}
+
+.Note .openLink {
+  float: right;
+  color: green;
+  font-size: 11px;
+  margin-bottom: 15px;
+}
+
+.Note .openLink a:link {
+  color: green;
+}
+.Note .openLink a:active {
+  color: green;
+}
+.Note .openLink a:visited {
+  color: green;
 }
