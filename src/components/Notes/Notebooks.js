@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 import Notebook from './Notebook'
 import Note from './Note'
 
-const { fetchCred } = require('../../../config/config')
+const { fetchCred, j } = require('../../../config/config')
 
 export default class Notebooks extends Component {
   constructor() {
@@ -24,12 +24,13 @@ export default class Notebooks extends Component {
   }
 
   notebookChanged = (notebookGuid) => {
-    console.log("CG in Notebooks::notebookChanged")
     this.setState({ notebookGuid })
   }
 
   renderNotebooks = (notebooks) =>
-    notebooks.map(notebook => this.renderNotebook(notebook))
+    notebooks.length ?
+      notebooks.map(notebook => this.renderNotebook(notebook)) :
+      <span>Locating notebooks... (or try to refresh)</span>
 
   renderNotebook = (notebook) =>
     <Notebook

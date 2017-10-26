@@ -29,13 +29,14 @@ export default class Note extends Component {
 
     const response = await fetch(url, fetchCred)
     var note = await response.json()
-    console.log(`CG response.json = ${j(note)}`)
 
-    if (note && note.errorCode) {
+    if (note && note.errorCode && note.errorCode == 5) {
       note = { content: '<div>Evernote rate limit hit. Try again in a few seconds.</div>' }
+    } else if (note && note.errorCode && note.errorCode == 404) {
+      note = { content: '<div>No notes found.</div>' }
     }
 
-    this.setState({ note: note.content, noteGuid: note.guid, notebookGuid: null })
+    this.setState({ note: note.content, noteTitle: note.title, noteGuid: note.guid, notebookGuid: null })
   }
 
   noteLink() {
@@ -53,6 +54,7 @@ export default class Note extends Component {
     return (
       <div className={classnames('Note', this.props.className)}>
         { this.noteLink() }
+        { this.state.noteTitle ? <div><b>{ this.state.noteTitle }</b><hr/></div> : null }
         { renderHTML(enml.HTMLOfENML(this.state.note)) }
       </div>
     )

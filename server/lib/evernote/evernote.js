@@ -31,6 +31,10 @@ async function notesMetadata(guid, token) {
   .then(notesMetadata => notesMetadata)
   .catch(err => [])
 
+  if (!notesMetadata.notes.length) {
+    return new Promise((resolve) => resolve({ errorCode: 404 }))
+  }
+
   const noteGuids = notesMetadata.notes.map(n => n.guid)
   const randomNoteIndex = getRandomInt(0, noteGuids.length)
 

@@ -7,7 +7,7 @@ function createClient() {
   return new Evernote.Client({
     consumerKey: 'galtenberg-6463', //process.env.EVERNOTE_KEY,
     consumerSecret: '245a76fbd19c833d', //process.env.EVERNOTE_SECRET,
-    sandbox: true, // change to false when you are ready to switch to production
+    sandbox: false, // change to false when you are ready to switch to production
     china: false, // change to true if you wish to connect to YXBJ - most of you won't
   })
 }
@@ -15,7 +15,7 @@ function createClient() {
 function createAuthenticatedClient(token) {
   return new Evernote.Client({
     token: token,
-    sandbox: true,
+    sandbox: false,
     china: false,
   })
 }
