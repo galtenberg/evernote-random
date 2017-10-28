@@ -30,7 +30,7 @@ exports.callback = (req, res) => {
 }
 
 exports.isLoggedIn = (req, res) => {
-  // TODO Also check oauth and access tokens against Evernote API?
+  // TODO Also check oauth and access tokens against Evernote API? Or could get us rate limited.
   res.status(200).json(!!(req.session && req.session.oauthToken))
 }
 

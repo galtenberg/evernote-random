@@ -10,12 +10,12 @@ exports.notebooks = (token) => {
   return client.getNoteStore().listNotebooks()
 }
 
-async function notesMetadata(guid, token) {
+async function notes(notebookGuid, token) {
   const client = enAuth.createAuthenticatedClient(token)
   const noteStore = client.getNoteStore()
 
   const filter = new Evernote.NoteStore.NoteFilter()
-  filter.notebookGuid = guid
+  filter.notebookGuid = notebookGuid
 
   const noteCount = noteStore.findNoteCounts(token, filter)
   .then(count => count['notebookCounts'][filter.notebookGuid])
@@ -25,7 +25,7 @@ async function notesMetadata(guid, token) {
   const offset = noteCount < maxNotes ? 0 : getRandomInt(0, noteCount-maxNotes)
 
   var spec = new Evernote.NoteStore.NotesMetadataResultSpec()
-  for (var p in spec) { if (p.indexOf('include') !== -1) { spec[p] = true } }
+  spec['includeNotebookGuid'] = true
 
   const notesMetadata = await noteStore.findNotesMetadata(filter, offset, maxNotes, spec)
   .then(notesMetadata => notesMetadata)
@@ -39,11 +39,12 @@ async function notesMetadata(guid, token) {
   const randomNoteIndex = getRandomInt(0, noteGuids.length)
 
   return noteStore.getNote(noteGuids[randomNoteIndex], true, true, true, true)
-  .then(note => note).catch(err => err)
+  .then(note => note)
+  .catch(err => err)
 }
 
-exports.notesMetadata = notesMetadata
+exports.notes = notes
 
 function getRandomInt (min, max) {
-    return Math.floor(Math.random() * (max - min + 1)) + min;
+  return Math.floor(Math.random() * (max - min + 1)) + min;
 }

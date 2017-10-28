@@ -1,14 +1,19 @@
 const evernote = require('../lib/evernote/evernote')
-//var printObject = require('print-object');
 const debug = require('debug')('cg')
 
 async function notebooks(req, res) {
-  const notebooks = await evernote.notebooks(req.session.accessToken)
-  res.status(200).json(notebooks)
+  try {
+    const notebooks = await evernote.notebooks(req.session.accessToken)
+    res.status(200).json(notebooks)
+  } catch(err) {
+    debug(`Error in controllers/notes::notebooks, err: ${JSON.stringify(err)}`)
+    res.status(500).json({rate: 'limited'})
+  }
+
 }
 
 async function notes(req, res) {
-  const notes = await evernote.notesMetadata(req.query.guid, req.session.accessToken)
+  const notes = await evernote.notes(req.query.guid, req.session.accessToken)
   res.status(200).json(notes)
 }
 

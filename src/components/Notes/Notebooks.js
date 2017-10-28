@@ -17,10 +17,11 @@ export default class Notebooks extends Component {
   async componentDidMount() {
     var response, notebooks
 
-    response = await fetch('/notebooks', fetchCred)
-    notebooks = await response.json()
-
-    if (notebooks) { this.setState({ notebooks: notebooks }) }
+    try {
+      response = await fetch('/notebooks', fetchCred)
+      if (response) { notebooks = await response.json() }
+      if (notebooks) { this.setState({ notebooks: notebooks }) }
+    } catch(err) { console.log(`Notebooks fetch error ${j(err)}, response ${j(response)}, notebooks ${j(notebooks)}`) }
   }
 
   notebookChanged = (notebookGuid) => {
