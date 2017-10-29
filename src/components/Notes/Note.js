@@ -2,7 +2,8 @@ import React, { Component } from 'react'
 import classnames from 'classnames'
 import './style.css'
 
-const enml = require('enml-js') /* alternative: require('enml2html') */
+const enml = require('enml-js')
+const enml2html = require('enml2html')
 import renderHTML from 'react-render-html'
 
 const { fetchCred, rootUrl } = require('../../../config/config')
@@ -49,6 +50,7 @@ export default class Note extends Component {
       note: note.note.content,
       noteTitle: note.note.title,
       noteGuid: note.note.guid,
+      noteResources: note.note.resources,
       edamUserId: note.edamUserId,
       edamShard: note.edamShard,
       notebookGuid: null,
@@ -71,13 +73,21 @@ export default class Note extends Component {
     </div>
   }
 
+  noteHtml() {
+    if (this.state.noteResources) {
+      return renderHTML(enml2html(this.state.note, this.state.noteResources, `https://www.evernote.com/shard/${this.state.edamShard}/nl/${this.state.edamUserId}/${this.state.noteGuid}`, this.state.noteGuid))
+    } else {
+      return renderHTML(enml.HTMLOfENML(this.state.note))
+    }
+  }
+
   render() {
     this.fetchNote(this.state.notebookGuid)
     return (
       <div className={classnames('Note', this.props.className)}>
         { this.noteLink() }
         { this.state.noteTitle ? <div><b>{ this.state.noteTitle }</b><br/><br/></div> : null }
-        { renderHTML(enml.HTMLOfENML(this.state.note)) }
+        { this.noteHtml() }
       </div>
     )
   }
