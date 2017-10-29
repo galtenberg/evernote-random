@@ -1,5 +1,5 @@
 const { callbackUrl, j } = require('../../config/config')
-const enAuth = require('../lib/evernote/en-auth')
+const enAuth = require('../lib/evernote/auth')
 
 exports.new = (req, res) => {
   enAuth.getRequestTokenObservable(`${callbackUrl}`)

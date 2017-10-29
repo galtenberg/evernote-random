@@ -1,7 +1,7 @@
 'use strict'
 
 const Evernote = require('evernote')
-const enAuth = require('./en-auth')
+const enAuth = require('./auth')
 
 exports.notebooks = (token) => {
   const client = enAuth.createAuthenticatedClient(token)
