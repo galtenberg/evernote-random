@@ -5,6 +5,8 @@ import './style.css'
 
 import Notebooks from '../Notes/Notebooks'
 
+const appName = require('../../../config/secrets').appName
+
 const { fetchCred } = require('../../../config/config')
 
 class App extends Component {
@@ -35,7 +37,7 @@ class App extends Component {
 
     return (
       <div className={classnames('App', this.props.className)}>
-        <b>BASB RandomNote</b> {authButton}
+        <b>{ appName }</b> {authButton}
 
         <hr/>
 
