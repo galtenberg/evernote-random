@@ -36,7 +36,7 @@ export default class Note extends Component {
     for (var i = 0; i < 3; i++) {
       const response = await fetch(url, fetchCred)
       note = await response.json()
-      if (note && !note.errorCode) { break }
+      if (note && (!note.errorCode || note.errorCode === 404)) { break }
       await sleep(500)
     }
 

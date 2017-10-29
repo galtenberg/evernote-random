@@ -7,9 +7,8 @@ async function notebooks(req, res) {
     res.status(200).json(notebooks)
   } catch(err) {
     debug(`Error in controllers/notes::notebooks, err: ${JSON.stringify(err)}`)
-    res.status(500).json({rate: 'limited'})
+    res.status(500).json(err)
   }
-
 }
 
 async function notes(req, res) {
