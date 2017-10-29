@@ -10,7 +10,7 @@ exports.notebooks = (token) => {
   return client.getNoteStore().listNotebooks()
 }
 
-async function notes(notebookGuid, token) {
+async function randomNote(notebookGuid, token) {
   const client = enAuth.createAuthenticatedClient(token)
   const noteStore = client.getNoteStore()
 
@@ -43,7 +43,7 @@ async function notes(notebookGuid, token) {
   .catch(err => err)
 }
 
-exports.notes = notes
+exports.randomNote = randomNote
 
 function getRandomInt (min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;

@@ -15,7 +15,8 @@ class App extends Component {
 
   async componentWillMount() {
     const response = await fetch('/isLoggedIn', fetchCred)
-    this.setState({ loggedIn: await response.json() })
+    const userData = await response.json()
+    this.setState({ loggedIn: userData.loggedIn })
   }
 
   componentWillUnmount() {

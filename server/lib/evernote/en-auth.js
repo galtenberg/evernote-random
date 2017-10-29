@@ -45,7 +45,7 @@ exports.getAccessTokenObservable = (oauthToken, oauthTokenSecret, oauthVerifier)
         observer.error(error)
         return
       }
-      observer.next(oauthAccessToken)
+      observer.next([oauthAccessToken, results])
       observer.complete()
     })
   })

@@ -11,10 +11,14 @@ async function notebooks(req, res) {
   }
 }
 
-async function notes(req, res) {
-  const notes = await evernote.notes(req.query.guid, req.session.accessToken)
-  res.status(200).json(notes)
+async function randomNote(req, res) {
+  const randomNote = await evernote.randomNote(req.query.guid, req.session.accessToken)
+  res.status(200).json({
+    note: randomNote,
+    edamUserId: req.session.edamUserId,
+    edamShard: req.session.edamShard,
+  })
 }
 
 exports.notebooks = notebooks
-exports.notes = notes
+exports.randomNote = randomNote

@@ -14,15 +14,18 @@ exports.new = (req, res) => {
 }
 
 exports.callback = (req, res) => {
-  let oauthVerifier = req.query.oauth_verifier;
+  let oauthVerifier = req.query.oauth_verifier
+
   if (!oauthVerifier) {
     res.sendStatus(400)
     return
   }
 
   enAuth.getAccessTokenObservable(req.session.oauthToken, req.session.oauthTokenSecret, oauthVerifier)
-  .subscribe((token) => {
+  .subscribe(([token, results]) => {
     req.session.accessToken = token
+    req.session.edamShard = results.edam_shard
+    req.session.edamUserId = results.edam_userId
     res.status(200).json(true)
   }, (error) => {
     res.sendStatus(400)
@@ -31,7 +34,9 @@ exports.callback = (req, res) => {
 
 exports.isLoggedIn = (req, res) => {
   // TODO Also check oauth and access tokens against Evernote API? Or could get us rate limited.
-  res.status(200).json(!!(req.session && req.session.oauthToken))
+  res.status(200).json({
+    loggedIn: !!(req.session && req.session.oauthToken),
+  })
 }
 
 exports.logout = (req, res) => {
