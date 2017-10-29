@@ -1,6 +1,5 @@
 const express = require('express')
 const morgan = require('morgan')
-//const debug = require('debug')('cg')
 const bodyParser = require('body-parser')
 const cookieSession = require('cookie-session')
 const path = require('path')
@@ -15,6 +14,12 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 // Serve static assets
 app.use(express.static(path.resolve(__dirname, '..', 'build')))
+
+// Re-enable on glitch.com
+// Always return the main index.html, so react-router render the route in the client
+//app.get('*', (req, res) => {
+  //res.sendFile(path.resolve(__dirname, '..', 'build', 'index.html'));
+//})
 
 app.use(cookieSession({
   name: 'evernoteSolitaire',

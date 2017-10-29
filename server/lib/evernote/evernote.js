@@ -3,8 +3,6 @@
 const Evernote = require('evernote')
 const enAuth = require('./en-auth')
 
-const debug = require('debug')('cg')
-
 exports.notebooks = (token) => {
   const client = enAuth.createAuthenticatedClient(token)
   return client.getNoteStore().listNotebooks()

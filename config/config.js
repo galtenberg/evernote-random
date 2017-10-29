@@ -1,6 +1,6 @@
 const path = require('path')
 const rootPath = path.normalize(__dirname + '/..')
-const debug = require('debug')('cg')
+const debug = require('debug')('rn')
 
 module.exports = {
   root: rootPath,

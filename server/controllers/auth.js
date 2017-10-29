@@ -1,4 +1,4 @@
-const { callbackUrl, debug, j } = require('../../config/config')
+const { callbackUrl, j } = require('../../config/config')
 const enAuth = require('../lib/evernote/en-auth')
 
 exports.new = (req, res) => {
@@ -8,7 +8,6 @@ exports.new = (req, res) => {
     req.session.oauthTokenSecret = oauthTokenSecret
     res.status(200).json(oauthUrl)
   }, (error) => {
-    debug(`Error in auth new: ${j(error)}`)
     res.sendStatus(400)
   });
 }
