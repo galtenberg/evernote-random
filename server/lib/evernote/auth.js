@@ -2,12 +2,11 @@
 
 const Evernote = require('evernote')
 const Rx = require('rxjs/Rx')
-const secrets = require('../../../config/secrets')
 
 function createClient() {
   return new Evernote.Client({
-    consumerKey: secrets.evernoteKey, //process.env.EVERNOTE_KEY,
-    consumerSecret: secrets.evernoteSecret, //process.env.EVERNOTE_SECRET,
+    consumerKey: process.env.evernoteKey,
+    consumerSecret: process.env.evernoteSecret,
     sandbox: false, // change to false when you are ready to switch to production
     china: false, // change to true if you wish to connect to YXBJ - most of you won't
   })

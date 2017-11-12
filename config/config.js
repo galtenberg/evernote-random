@@ -4,9 +4,11 @@ const debug = require('debug')('rn')
 
 module.exports = {
   root: rootPath,
+  //rootUrl: 'https://evernote-random.glitch.me',
+  //callbackUrl: 'https://evernote-random.glitch.me/auth/callback',
   rootUrl: 'http://localhost:3000',
   callbackUrl: 'http://localhost:3000/auth/callback',
-  app_name: process.env.APP_NAME,
+  appName: 'RandomNote',
   debug: debug,
   j: JSON.stringify,
   fetchCred: { credentials: 'same-origin' },

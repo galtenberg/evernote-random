@@ -13,17 +13,20 @@ app.use(morgan(':remote-addr - :remote-user [:date[clf]] ":method :url HTTP/:htt
 app.use(bodyParser.urlencoded({ extended: false }))
 // json parser
 app.use(bodyParser.json())
+
+
+//// comment-out locally
 // Serve static assets
 //app.use(express.static(path.resolve(__dirname, '..', 'build')))
-
-// Re-enable on glitch.com
-// Always return the main index.html, so react-router render the route in the client
+// Always return the main index.html, so react-router renders the route in the client
 //app.get(['/', '/auth*', '/randomInApp', '/random-in-app'], (req, res) => {
   //res.sendFile(path.resolve(__dirname, '..', 'build', 'index.html'));
 //})
+//// end comment-out locally
+
 
 app.use(cookieSession({
-  name: 'evernoteSolitaire',
+  name: 'evernoteRandom',
   secret: 'evernote-sandbox-secret',
   maxAge: 30 * 24 * 60 * 60 * 1000 // 1 month
 }))
@@ -44,7 +47,7 @@ app.post('/report-violation', function (req, res) {
   res.status(204).end()
 })
 
-const PORT = 8000 //process.env.PORT || 8000
+const PORT = 8000 // process.env.PORT || 8000
 
 app.use(csp({
   directives: {

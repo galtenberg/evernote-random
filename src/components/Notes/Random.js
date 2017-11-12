@@ -32,5 +32,3 @@ export default class Random extends Component {
 
   render() { return <div>Redirecting to Evernote app...</div> }
 }
-
-

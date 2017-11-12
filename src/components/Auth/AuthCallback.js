@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
-import classnames from 'classnames'
+//import classnames from 'classnames'
 const queryString = require('query-string')
 
 const { fetchCred, rootUrl } = require('../../../config/config')
 
-import './style.css'
+//import './style.css'
 
 // TODO: Make this class unnecessary, just allow proxy through to api auth/callback
 
@@ -23,7 +23,7 @@ export default class AuthCallback extends Component {
 
   render() {
     return (
-      <div className={classnames('Auth', this.props.className)}>
+      <div>
         Redirecting to Evernote Solitaire...
       </div>
     )

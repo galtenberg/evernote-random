@@ -10,7 +10,7 @@ const { fetchCred, appName } = require('../../../config/config')
 class App extends Component {
   constructor(props) {
     super(props)
-    this.state = { loggedIn: 'unknown' }
+    this.state = { loggedIn: false }
   }
 
   async componentWillMount() {
@@ -20,7 +20,7 @@ class App extends Component {
   }
 
   componentWillUnmount() {
-    this.setState({ loggedIn: 'unknown' })
+    this.setState({ loggedIn: false })
   }
 
   render() {

@@ -3,7 +3,7 @@ import classnames from 'classnames'
 
 const { fetchCred } = require('../../../config/config')
 
-import './style.css';
+import './style.css'
 
 export default class Auth extends Component {
   async componentDidMount() {
