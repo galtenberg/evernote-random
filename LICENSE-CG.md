@@ -1,6 +1,6 @@
 Copyright (c) 2017 Christopher Galtenberg
 
-All rights reserved. 
+All rights reserved.
 
 Will be relicensed after contributor model is determined.
 
