@@ -3,9 +3,19 @@
 const Evernote = require('evernote')
 const enAuth = require('./auth')
 
-exports.notebooks = (token) => {
+function notebooks(token) {
   const client = enAuth.createAuthenticatedClient(token)
   return client.getNoteStore().listNotebooks()
+}
+
+async function randomNoteFromRandomNotebook(token) {
+  return randomNote(randomNotebook(token).guid, token)
+}
+
+async function randomNotebook(token) {
+  const notebooksSet = await notebooks(token)
+  const randomNoteIndex = getRandomInt(0, [notebooksSet].length)
+  return notebooksSet[randomNoteIndex]
 }
 
 async function randomNote(notebookGuid, token) {
@@ -41,7 +51,10 @@ async function randomNote(notebookGuid, token) {
   .catch(err => err)
 }
 
+exports.randomNoteFromRandomNotebook = randomNoteFromRandomNotebook
+exports.randomNotebook = randomNotebook
 exports.randomNote = randomNote
+exports.notebooks = notebooks
 
 function getRandomInt(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;

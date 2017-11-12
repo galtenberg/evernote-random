@@ -18,5 +18,15 @@ async function randomNote(req, res) {
   })
 }
 
+async function randomNoteFromRandomNotebook(req, res) {
+  const randomNote = await evernote.randomNoteFromRandomNotebook(req.session.accessToken)
+  res.status(200).json({
+    note: randomNote,
+    edamUserId: req.session.edamUserId,
+    edamShard: req.session.edamShard,
+  })
+}
+
 exports.notebooks = notebooks
 exports.randomNote = randomNote
+exports.randomNoteFromRandomNotebook = randomNoteFromRandomNotebook

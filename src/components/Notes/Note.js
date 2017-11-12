@@ -3,13 +3,13 @@ import classnames from 'classnames'
 import './style.css'
 
 const enml = require('enml-js')
-const enml2html = require('enml2html')
+const enml2html = require('../../lib/enml2html') // require('enml2html')
 import renderHTML from 'react-render-html'
 
 const { fetchCred, rootUrl } = require('../../../config/config')
 
 function sleep(ms) {
-  return new Promise(resolve => setTimeout(resolve, ms));
+  return new Promise(resolve => setTimeout(resolve, ms))
 }
 
 export default class Note extends Component {
