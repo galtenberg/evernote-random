@@ -11,7 +11,7 @@ export default class Random extends Component {
     var response, note
 
     try {
-      const url = new URL('/randomNoteFromRandomNotebook', rootUrl)
+      const url = new URL('/randomNote', rootUrl)
       for (var i = 0; i < 3; i++) {
         response = await fetch(url, fetchCred)
         note = await response.json()
