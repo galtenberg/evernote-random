@@ -15,14 +15,14 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 
 
-//// comment-out locally
+//// comment-out locally, uncomment on glitch/prod - see https://github.com/galtenberg/evernote-random/issues/2
 // Serve static assets
 //app.use(express.static(path.resolve(__dirname, '..', 'build')))
 // Always return the main index.html, so react-router renders the route in the client
 //app.get(['/', '/auth*', '/randomInApp', '/random-in-app'], (req, res) => {
   //res.sendFile(path.resolve(__dirname, '..', 'build', 'index.html'));
 //})
-//// end comment-out locally
+//// end comment-out locally, uncomment on glitch/prod
 
 
 app.use(cookieSession({

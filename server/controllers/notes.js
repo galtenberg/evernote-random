@@ -10,16 +10,8 @@ async function notebooks(req, res) {
 }
 
 async function randomNote(req, res) {
-  const randomNote = await evernote.randomNote(req.query.guid, req.session.accessToken)
-  res.status(200).json({
-    note: randomNote,
-    edamUserId: req.session.edamUserId,
-    edamShard: req.session.edamShard,
-  })
-}
-
-async function randomNoteFromRandomNotebook(req, res) {
-  const randomNote = await evernote.randomNoteFromRandomNotebook(req.session.accessToken)
+  const guid = req.query.guid || evernote.randomNotebook(req.session.accessToken).guid
+  const randomNote = await evernote.randomNote(req.session.accessToken, guid)
   res.status(200).json({
     note: randomNote,
     edamUserId: req.session.edamUserId,
@@ -29,4 +21,3 @@ async function randomNoteFromRandomNotebook(req, res) {
 
 exports.notebooks = notebooks
 exports.randomNote = randomNote
-exports.randomNoteFromRandomNotebook = randomNoteFromRandomNotebook
