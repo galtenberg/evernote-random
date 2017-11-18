@@ -53,7 +53,7 @@ export default class Notebooks extends Component {
   renderNotebook = (notebook) =>
     <Notebook
       name={notebook.name}
-      key={notebook.guid}
+      key={notebook.name+notebook.guid}
       guid={notebook.guid}
       notebookChanged={this.notebookChanged}
     />

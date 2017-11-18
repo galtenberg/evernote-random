@@ -3,9 +3,20 @@
 const Evernote = require('evernote')
 const enAuth = require('./auth')
 
-function notebooks(token) {
+async function notebooks(token) {
   const client = enAuth.createAuthenticatedClient(token)
-  return client.getNoteStore().listNotebooks()
+  const notebooks = await client.getNoteStore().listNotebooks()
+  return addParaNotebooks(notebooks)
+}
+
+function addParaNotebooks(notebooks) {
+  const paraNotebooks = notebooks.filter(n => ['projects', 'areas', 'resources', 'archives'].includes(n.name.toLowerCase()))
+  const parNotebooks = notebooks.filter(n => ['projects', 'areas', 'resources'].includes(n.name.toLowerCase()))
+  return notebooks.concat([
+    { name: 'Any PARA', guid: paraNotebooks.map(n => n.guid) },
+    { name: 'Any PAR', guid: parNotebooks.map(n => n.guid) },
+    { name: 'Any', guid: notebooks.map(n => n.guid) }
+  ])
 }
 
 async function randomNotebook(token) {
@@ -19,7 +30,10 @@ async function randomNote(token, notebookGuid) {
   const noteStore = client.getNoteStore()
 
   const filter = new Evernote.NoteStore.NoteFilter()
-  filter.notebookGuid = notebookGuid
+
+  filter.notebookGuid = notebookGuid.includes(',') ?
+    getRandomElement(notebookGuid.split(',')) :
+    notebookGuid
 
   const noteCount = noteStore.findNoteCounts(token, filter)
   .then(count => count['notebookCounts'][filter.notebookGuid])
@@ -40,9 +54,8 @@ async function randomNote(token, notebookGuid) {
   }
 
   const noteGuids = notesMetadata.notes.map(n => n.guid)
-  const randomNoteIndex = getRandomInt(0, noteGuids.length)
 
-  return noteStore.getNote(noteGuids[randomNoteIndex], true, true, true, true)
+  return noteStore.getNote(getRandomElement(noteGuids), true, true, true, true)
   .then(note => note)
   .catch(err => err)
 }
@@ -54,3 +67,5 @@ exports.notebooks = notebooks
 function getRandomInt(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
+
+const getRandomElement = array => array[getRandomInt(0, array.length)]
