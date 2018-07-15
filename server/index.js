@@ -20,6 +20,7 @@ app.use(bodyParser.json())
 //app.use(express.static(path.resolve(__dirname, '..', 'build')))
 // Always return the main index.html, so react-router renders the route in the client
 //app.get(['/', '/auth*', '/randomInApp', '/random-in-app'], (req, res) => {
+////app.get(['/', '/auth*', '/random*'], (req, res) => { /* wildcard * simply doesn't work? */
   //res.sendFile(path.resolve(__dirname, '..', 'build', 'index.html'));
 //})
 //// end comment-out locally, uncomment on glitch/prod

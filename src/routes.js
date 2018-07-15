@@ -3,7 +3,7 @@ import App from './components/App/App'
 import Auth from './components/Auth/Auth'
 import AuthOut from './components/Auth/AuthOut'
 import AuthCallback from './components/Auth/AuthCallback'
-import Random from './components/Notes/Random'
+import RandomApp from './components/Notes/RandomApp'
 
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 
@@ -15,8 +15,8 @@ const Routes = () => {
         <Route exact path="/auth" component={Auth} />
         <Route exact path="/authout" component={AuthOut} />
         <Route exact path="/auth/callback" component={AuthCallback} />
-        <Route exact path="/randomInApp" component={Random} />
-        <Route exact path="/random-in-app" component={Random} />
+        <Route exact path="/randomInApp" component={RandomApp} />
+        <Route exact path="/random-in-app" component={RandomApp} />
       </div>
     </Router>
   )

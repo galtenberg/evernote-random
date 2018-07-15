@@ -19,6 +19,8 @@ function secondsToHms(d) {
   return hDisplay + mDisplay + sDisplay
 }
 
+const randomInt = (min, max) => (Math.floor(Math.random() * (max - min + 1)) + min)
+
 export default class Notebooks extends Component {
   constructor() {
     super()
@@ -34,10 +36,18 @@ export default class Notebooks extends Component {
     try {
       response = await fetch('/notebooks', fetchCred)
       if (response) { notebooks = await response.json() }
-      if (notebooks) { this.setState({ notebooks: notebooks }) }
+      if (notebooks) {
+        this.setState({
+          notebooks: notebooks,
+          notebookGuid: this.state.notebookGuid || notebooks[randomInt(0, notebooks.length)].guid
+        })
+      }
     } catch(err) {
       console.log(`Notebooks fetch error ${j(err)}, response ${j(response)}, notebooks ${j(notebooks)}`)
-      this.setState({ notebooks: `Evernote has rate limited us. Try again in ${secondsToHms(notebooks.rateLimitDuration)}.` })
+      if (notebooks && notebooks.rateLimitDuration)
+        this.setState({ notebooks: `Evernote has rate limited us. Try again in ${secondsToHms(notebooks.rateLimitDuration)}.` })
+      else
+        this.setState({ notebooks: "Evernote connection failed. Please press Logout and try logging in again." })
     }
   }
 
@@ -62,7 +72,7 @@ export default class Notebooks extends Component {
     return (
       <div>
         <div>
-          Choose a notebook:&nbsp;
+          Notebooks:&nbsp;
           { this.renderNotebooks(this.state.notebooks) }
         </div>
         <hr/>

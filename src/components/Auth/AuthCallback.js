@@ -24,7 +24,7 @@ export default class AuthCallback extends Component {
   render() {
     return (
       <div>
-        Redirecting to Evernote Solitaire...
+        Redirecting to ForteLabs RandomNote...
       </div>
     )
   }

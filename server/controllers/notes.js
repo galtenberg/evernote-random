@@ -2,7 +2,7 @@ const evernote = require('../lib/evernote/evernote')
 
 async function notebooks(req, res) {
   try {
-    const notebooks = await evernote.notebooks(req.session.accessToken)
+    const notebooks = await evernote.notebooksWithPara(req.session.accessToken)
     res.status(200).json(notebooks)
   } catch(err) {
     res.status(500).json(err)
@@ -10,7 +10,7 @@ async function notebooks(req, res) {
 }
 
 async function randomNote(req, res) {
-  const guid = req.query.guid || evernote.randomNotebook(req.session.accessToken).guid
+  const guid = req.query.guid || (await evernote.randomNotebook(req.session.accessToken)).guid
   const randomNote = await evernote.randomNote(req.session.accessToken, guid)
   res.status(200).json({
     note: randomNote,

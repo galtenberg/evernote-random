@@ -5,23 +5,23 @@ const enAuth = require('./auth')
 
 async function notebooks(token) {
   const client = enAuth.createAuthenticatedClient(token)
-  const notebooks = await client.getNoteStore().listNotebooks()
-  return addParaNotebooks(notebooks)
+  return await client.getNoteStore().listNotebooks()
 }
 
-function addParaNotebooks(notebooks) {
-  const paraNotebooks = notebooks.filter(n => ['projects', 'areas', 'resources', 'archives'].includes(n.name.toLowerCase()))
-  const parNotebooks = notebooks.filter(n => ['projects', 'areas', 'resources'].includes(n.name.toLowerCase()))
-  return notebooks.concat([
+async function notebooksWithPara(token) {
+  const notebooksSet = await notebooks(token)
+  const paraNotebooks = notebooksSet.filter(n => ['projects', 'areas', 'resources', 'archives'].includes(n.name.toLowerCase()))
+  const parNotebooks = notebooksSet.filter(n => ['projects', 'areas', 'resources'].includes(n.name.toLowerCase()))
+  return notebooksSet.concat([
     { name: 'Any PARA', guid: paraNotebooks.map(n => n.guid) },
     { name: 'Any PAR', guid: parNotebooks.map(n => n.guid) },
-    { name: 'Any', guid: notebooks.map(n => n.guid) }
+    { name: 'Any', guid: notebooksSet.map(n => n.guid) }
   ])
 }
 
 async function randomNotebook(token) {
   const notebooksSet = await notebooks(token)
-  const randomNoteIndex = getRandomInt(0, [notebooksSet].length)
+  const randomNoteIndex = randomInt(0, notebooksSet.length-1)
   return notebooksSet[randomNoteIndex]
 }
 
@@ -32,7 +32,7 @@ async function randomNote(token, notebookGuid) {
   const filter = new Evernote.NoteStore.NoteFilter()
 
   filter.notebookGuid = notebookGuid.includes(',') ?
-    getRandomElement(notebookGuid.split(',')) :
+    randomElement(notebookGuid.split(',')) :
     notebookGuid
 
   const noteCount = noteStore.findNoteCounts(token, filter)
@@ -40,7 +40,7 @@ async function randomNote(token, notebookGuid) {
   .catch(err => err)
 
   const maxNotes = 50
-  const offset = noteCount < maxNotes ? 0 : getRandomInt(0, noteCount-maxNotes)
+  const offset = noteCount < maxNotes ? 0 : randomInt(0, noteCount-maxNotes)
 
   var spec = new Evernote.NoteStore.NotesMetadataResultSpec()
   spec['includeNotebookGuid'] = true
@@ -55,17 +55,15 @@ async function randomNote(token, notebookGuid) {
 
   const noteGuids = notesMetadata.notes.map(n => n.guid)
 
-  return noteStore.getNote(getRandomElement(noteGuids), true, true, true, true)
+  return noteStore.getNote(randomElement(noteGuids), true, true, true, true)
   .then(note => note)
   .catch(err => err)
 }
 
 exports.randomNotebook = randomNotebook
 exports.randomNote = randomNote
+exports.notebooksWithPara = notebooksWithPara
 exports.notebooks = notebooks
 
-function getRandomInt(min, max) {
-  return Math.floor(Math.random() * (max - min + 1)) + min;
-}
-
-const getRandomElement = array => array[getRandomInt(0, array.length)]
+const randomInt = (min, max) => (Math.floor(Math.random() * (max - min + 1)) + min)
+const randomElement = array => array[randomInt(0, array.length-1)]

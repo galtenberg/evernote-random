@@ -16,6 +16,8 @@ export default class Auth extends Component {
     return (
       <div className={classnames('Auth', this.props.className)}>
         Redirecting to Evernote Login...
+        <br></br><br></br><hr></hr><br></br>
+        Click <a href="/">here</a> to go back.
       </div>
     );
   }

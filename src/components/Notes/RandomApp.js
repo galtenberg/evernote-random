@@ -6,7 +6,7 @@ function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms))
 }
 
-export default class Random extends Component {
+export default class RandomApp extends Component {
   async componentDidMount() {
     var response, note
 
@@ -30,5 +30,13 @@ export default class Random extends Component {
     }
   }
 
-  render() { return <div>Redirecting to Evernote app...</div> }
+  render() {
+    return (
+      <div>
+        Redirecting to Evernote app...
+        <br></br><br></br><hr></hr><br></br>
+        Click <a href="/">here</a> to go home.
+      </div>
+    );
+  }
 }

@@ -25,9 +25,10 @@ export default class Note extends Component {
     this.setState({ note, noteTitle: null, noteGuid: null, notebookGuid: nextProps.notebookGuid })
   }
 
-  async fetchNote(guid) {
-    if (!guid) { return null }
+  async fetchNote(notebookGuid) {
+    if (!notebookGuid) { return null }
 
+    const guid = notebookGuid || ''
     const url = new URL('/randomNote', rootUrl)
     const params = { guid }
     Object.keys(params).forEach(key => url.searchParams.append(key, params[key]))
