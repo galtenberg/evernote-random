@@ -1,29 +1,62 @@
+:root {
+  --Note-radius: calc(2.5 * var(--Button-radius));
+}
+
 .Note {
-  border: 1px solid green;
-  width: 60%;
+  background-color: var(--c-paper);
+  border-radius: var(--Note-radius);
+  /* box-shadow: 0 8px 17px 2px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12),
+    0 5px 5px -3px rgba(0, 0, 0, 0.2); */
+  box-shadow: 0 9px 19px 2px rgba(0, 0, 0, 0.08), 0 3px 9px 1px rgba(0, 0, 0, 0.02),
+    0 5px 5px -3px rgba(0, 0, 0, 0.05);
   display: block;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 20px;
-  margin-bottom: 20px;
-  padding: 20px;
-  text-align: left;
-  background-color: #f8f8f8;
+  line-height: 1.5;
+  margin: calc(2 * var(--spacer)) auto;
+  max-width: var(--container);
+  width: 100%;
 }
 
-.Note .openLink {
-  float: right;
-  color: green;
-  font-size: 11px;
-  margin-bottom: 15px;
+/* EN LINKS */
+
+.Note-openLink {
+  background-color: var(--c-link);
+  border-top-right-radius: var(--Note-radius);
+  border-top-left-radius: var(--Note-radius);
+  color: var(--c-paper);
+  padding-bottom: 1px;
+  padding-right: 6px;
+  text-align: right;
+}
+.Note-openLink span {
+  margin: 0 calc(0.25 * var(--spacer));
+}
+.Note-openLink a:link {
+  color: var(--c-paper);
+}
+.Note-openLink a:active {
+  color: var(--c-paper);
+}
+.Note-openLink a:visited {
+  color: var(--c-text);
 }
 
-.Note .openLink a:link {
-  color: green;
+/* INNER */
+
+.Note-inner {
+  padding: var(--spacer);
+  padding-top: 0;
 }
-.Note .openLink a:active {
-  color: green;
+
+.Note-heading {
+  /* background-color: var(--c-link-bg); */
+  /* border-bottom: 1px solid var(--c-link); */
+  padding: calc(1.5 * var(--spacer)) var(--spacer);
 }
-.Note .openLink a:visited {
-  color: green;
+
+.Note .enNote a {
+  text-decoration: underline;
+}
+
+.Note hr {
+  margin: var(--spacer) 0;
 }
