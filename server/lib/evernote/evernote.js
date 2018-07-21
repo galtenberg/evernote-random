@@ -3,9 +3,29 @@
 const Evernote = require('evernote')
 const enAuth = require('./auth')
 
+const CacheService = require('../cache')
+
+const ttl = 60 * 60 * 1 // cache length 1 hr
+const cache = new CacheService(ttl)
+
+const notebooksCacheKey = sessionUserId => `user${sessionUserId}-notebooks`
+
 async function notebooks(token) {
-  const client = enAuth.createAuthenticatedClient(token)
-  return await client.getNoteStore().listNotebooks()
+  return cache.get(notebooksCacheKey(token),
+    async () => fetchNotebooks(token))
+}
+
+async function fetchNotebooks(token) {
+  const noteStore = enAuth.createAuthenticatedClient(token).getNoteStore()
+  const notebooks = await noteStore.listNotebooks().then(result => result)
+
+  const noteCounts = await noteStore.
+    findNoteCounts(token, new Evernote.NoteStore.NoteFilter()).
+    then(count => count['notebookCounts'])
+
+  return notebooks
+    .map(notebook => ({ name: notebook.name, guid: notebook.guid, count: noteCounts[notebook.guid] }))
+    .filter(notebook => notebook.count) // exclude empty notebooks
 }
 
 async function notebooksWithPara(token) {
@@ -35,9 +55,9 @@ async function randomNote(token, notebookGuid) {
     randomElement(notebookGuid.split(',')) :
     notebookGuid
 
-  const noteCount = noteStore.findNoteCounts(token, filter)
-  .then(count => count['notebookCounts'][filter.notebookGuid])
-  .catch(err => err)
+  const noteCount = (await notebooks(token))
+    .find(n => n.guid == filter.notebookGuid)
+    .count
 
   const maxNotes = 50
   const offset = noteCount < maxNotes ? 0 : randomInt(0, noteCount-maxNotes)

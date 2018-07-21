@@ -16,6 +16,7 @@
     "helmet-csp": "^2.6.0",
     "is-string": "^1.0.4",
     "morgan": "^1.8.2",
+    "node-cache": "^4.2.0",
     "nodemon": "^1.11.0",
     "query-string": "^5.0.0",
     "react": "^15.6.1",
