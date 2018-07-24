@@ -1,48 +1,48 @@
-import React, { Component } from "react";
-import { Link } from "react-router-dom";
-import classnames from "classnames";
-import "./style.css";
+import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
+import classnames from 'classnames'
+import './style.css'
 
-import Notebooks from "../Notes/Notebooks";
+import Notebooks from '../Notes/Notebooks'
 
-const { fetchCred, appName } = require("../../../config/config");
+const { fetchCred, appName } = require('../../../config/config')
 
 class App extends Component {
   constructor(props) {
-    super(props);
-    this.state = { loggedIn: false };
+    super(props)
+    this.state = { loggedIn: false }
   }
 
   async componentWillMount() {
-    const response = await fetch("/isLoggedIn", fetchCred);
-    const userData = await response.json();
-    this.setState({ loggedIn: userData.loggedIn });
+    const response = await fetch('/isLoggedIn', fetchCred)
+    const userData = await response.json()
+    this.setState({ loggedIn: userData.loggedIn })
   }
 
   componentWillUnmount() {
-    this.setState({ loggedIn: false });
+    this.setState({ loggedIn: false })
   }
 
   render() {
-    var authButton, notebooks;
+    var authButton, notebooks
     if (this.state.loggedIn) {
       authButton = (
         <Link to="authout">
           <button>Logout</button>
         </Link>
-      );
-      notebooks = <Notebooks />;
+      )
+      notebooks = <Notebooks />
     } else {
       authButton = (
         <Link to="auth">
           <button>Login</button>
         </Link>
-      );
-      notebooks = <div>Welcome. Login to see your notebooks.</div>;
+      )
+      notebooks = <div>Welcome. Login to see your notebooks.</div>
     }
 
     return (
-      <div className={classnames("App", this.props.className)}>
+      <div className={classnames('App', this.props.className)}>
         <header className="Header" role="banner">
           <div className="f f-justifyBetween">
             <div className="App-logo f f-alignSelfCenter">{appName}</div>
@@ -76,14 +76,14 @@ class App extends Component {
         </div> */}
         {notebooks}
         <footer className="Footer">
-          A ForteLabs thing. Contributions welcome:{" "}
+          A ForteLabs thing. Contributions welcome:{' '}
           <a href="https://github.com/galtenberg/evernote-random" target="_blank">
             Github
           </a>.
         </footer>
       </div>
-    );
+    )
   }
 }
 
-export default App;
+export default App

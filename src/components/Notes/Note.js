@@ -1,53 +1,53 @@
-import React, { Component } from "react";
-import classnames from "classnames";
-import "./style.css";
+import React, { Component } from 'react'
+import classnames from 'classnames'
+import './style.css'
 
-const enml = require("enml-js");
-const enml2html = require("../../lib/enml2html"); // require('enml2html')
-import renderHTML from "react-render-html";
+const enml = require('enml-js')
+const enml2html = require('../../lib/enml2html') // require('enml2html')
+import renderHTML from 'react-render-html'
 
-const { fetchCred, rootUrl } = require("../../../config/config");
+const { fetchCred, rootUrl } = require('../../../config/config')
 
 function sleep(ms) {
-  return new Promise(resolve => setTimeout(resolve, ms));
+  return new Promise(resolve => setTimeout(resolve, ms))
 }
 
 export default class Note extends Component {
   constructor(props) {
-    super(props);
-    this.state = { note: null, noteGuid: null, notebookGuid: props.notebookGuid };
+    super(props)
+    this.state = { note: null, noteGuid: null, notebookGuid: props.notebookGuid }
   }
 
   componentWillReceiveProps(nextProps) {
     const note = nextProps.notebookGuid
       ? "<div className='Note-heading'>Loading...</div>"
-      : "<div className='Note-heading'>Select a Notebook above.</div>";
+      : "<div className='Note-heading'>Select a Notebook above.</div>"
     this.setState({
       note,
       noteTitle: null,
       noteGuid: null,
       notebookGuid: nextProps.notebookGuid
-    });
+    })
   }
 
   async fetchNote(notebookGuid) {
     if (!notebookGuid) {
-      return null;
+      return null
     }
 
-    const guid = notebookGuid || "";
-    const url = new URL("/randomNote", rootUrl);
-    const params = { guid };
-    Object.keys(params).forEach(key => url.searchParams.append(key, params[key]));
+    const guid = notebookGuid || ''
+    const url = new URL('/randomNote', rootUrl)
+    const params = { guid }
+    Object.keys(params).forEach(key => url.searchParams.append(key, params[key]))
 
-    var note;
+    var note
     for (var i = 0; i < 3; i++) {
-      const response = await fetch(url, fetchCred);
-      note = await response.json();
+      const response = await fetch(url, fetchCred)
+      note = await response.json()
       if (note && note.note && (!note.note.errorCode || note.note.errorCode === 404)) {
-        break;
+        break
       }
-      await sleep(500);
+      await sleep(500)
     }
 
     if (note && note.note && note.note.errorCode && note.note.errorCode === 5) {
@@ -55,7 +55,7 @@ export default class Note extends Component {
         note: {
           content: `<div className='Note-heading'>Evernote rate limit hit. Try again in a few seconds.</div>`
         }
-      };
+      }
     } else if (
       note &&
       note.note &&
@@ -66,7 +66,7 @@ export default class Note extends Component {
         note: {
           content: "<div className='Note-heading'>No notes found.</div>"
         }
-      };
+      }
     }
 
     this.setState({
@@ -77,19 +77,19 @@ export default class Note extends Component {
       edamUserId: note.edamUserId,
       edamShard: note.edamShard,
       notebookGuid: null
-    });
+    })
   }
 
   noteLink() {
     if (!this.state.noteGuid) {
-      return;
+      return
     }
     const link = `https://www.evernote.com/shard/${this.state.edamShard}/nl/${
       this.state.edamUserId
-    }/${this.state.noteGuid}`;
+    }/${this.state.noteGuid}`
     const appLink = `evernote:///view/${this.state.edamUserId}/${
       this.state.edamShard
-    }/${this.state.noteGuid}/${this.state.noteGuid}/`;
+    }/${this.state.noteGuid}/${this.state.noteGuid}/`
     return (
       <div className="Note-openLink">
         <a href={link} className="Button Button--reverse" target="_blank">
@@ -99,7 +99,7 @@ export default class Note extends Component {
           Evernote App
         </a>
       </div>
-    );
+    )
   }
 
   noteHtml() {
@@ -113,22 +113,22 @@ export default class Note extends Component {
           }/${this.state.noteGuid}`,
           this.state.noteGuid
         )
-      );
+      )
     } else {
-      return renderHTML(enml.HTMLOfENML(this.state.note));
+      return renderHTML(enml.HTMLOfENML(this.state.note))
     }
   }
 
   render() {
-    this.fetchNote(this.state.notebookGuid);
+    this.fetchNote(this.state.notebookGuid)
     return (
-      <div className={classnames("Note", this.props.className)}>
+      <div className={classnames('Note', this.props.className)}>
         {this.noteLink()}
         {this.state.noteTitle ? (
           <h2 className="Note-heading">{this.state.noteTitle}</h2>
         ) : null}
         <div className="Note-inner">{this.noteHtml()}</div>
       </div>
-    );
+    )
   }
 }
