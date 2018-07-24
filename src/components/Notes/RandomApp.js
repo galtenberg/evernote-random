@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-const { fetchCred, rootUrl, j } = require('../../../config/config')
+const { fetchCred, rootUrl, j } = require('../../config/config')
 
 function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms))
