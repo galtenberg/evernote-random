@@ -1,8 +1,12 @@
-const NodeCache = require("node-cache")
+const NodeCache = require('node-cache')
 
 module.exports = class Cache {
   constructor(ttlSeconds) {
-    this.cache = new NodeCache({ stdTTL: ttlSeconds, checkperiod: ttlSeconds * 0.2, useClones: false })
+    this.cache = new NodeCache({
+      stdTTL: ttlSeconds,
+      checkperiod: ttlSeconds * 0.2,
+      useClones: false
+    })
   }
 
   get(key, storeFunction) {
@@ -11,7 +15,7 @@ module.exports = class Cache {
       return Promise.resolve(value)
     }
 
-    return storeFunction().then((result) => {
+    return storeFunction().then(result => {
       this.cache.set(key, result)
       return result
     })

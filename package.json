@@ -17,15 +17,14 @@
     "helmet-csp": "2.7.1",
     "is-string": "1.0.4",
     "morgan": "1.9.0",
+    "node-cache": "4.2.0",
     "nodemon": "1.18.3",
     "query-string": "^5.0.0",
     "react": "16.4.1",
     "react-dom": "16.4.1",
     "react-render-html": "0.6.0",
     "react-router-dom": "4.3.1",
-    "rxjs": "^5.4.3",
-    "node-cache": "4.2.0",
-    "react-scripts": "1.1.4"
+    "rxjs": "^5.4.3"
   },
   "scripts": {
     "start": "concurrently \"npm run client\" \"npm run server\"",
@@ -38,14 +37,22 @@
     "precommit": "lint-staged"
   },
   "lint-staged": {
-    "src/**/*.{js,jsx,json,css}": [
+    "src/**/*.{js,json,css}": [
+      "prettier --single-quote --no-semi --write",
+      "git add"
+    ],
+    "server/**/*.{js,json}": [
       "prettier --single-quote --no-semi --write",
       "git add"
     ]
   },
   "devDependencies": {
+    "husky": "^0.14.3",
+    "lint-staged": "^7.2.0",
     "path": "0.12.7",
-    "react-dev-utils": "5.0.1"
+    "prettier": "^1.13.7",
+    "react-dev-utils": "5.0.1",
+    "react-scripts": "1.1.4"
   },
   "engines": {
     "node": "10.5"
