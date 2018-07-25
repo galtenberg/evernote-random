@@ -1,12 +1,12 @@
 import React, { Component } from 'react'
 import classnames from 'classnames'
+import renderHTML from 'react-render-html'
 import './style.css'
 
 const enml = require('enml-js')
 const enml2html = require('../../lib/enml2html') // require('enml2html')
-import renderHTML from 'react-render-html'
 
-const { fetchCred, rootUrl } = require('../../../config/config')
+const { fetchCred, rootUrl } = require('../../config/config')
 
 function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms))

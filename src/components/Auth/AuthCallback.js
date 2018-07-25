@@ -2,9 +2,7 @@ import React, { Component } from 'react'
 //import classnames from 'classnames'
 const queryString = require('query-string')
 
-const { fetchCred, rootUrl } = require('../../../config/config')
-
-//import './style.css'
+const { fetchCred, rootUrl } = require('../../config/config')
 
 // TODO: Make this class unnecessary, just allow proxy through to api auth/callback
 
