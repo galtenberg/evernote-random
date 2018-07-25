@@ -4,18 +4,20 @@ async function notebooks(req, res) {
   try {
     const notebooks = await evernote.notebooksWithPara(req.session.accessToken)
     res.status(200).json(notebooks)
-  } catch(err) {
+  } catch (err) {
     res.status(500).json(err)
   }
 }
 
 async function randomNote(req, res) {
-  const guid = req.query.guid || (await evernote.randomNotebook(req.session.accessToken)).guid
+  const guid =
+    req.query.guid ||
+    (await evernote.randomNotebook(req.session.accessToken)).guid
   const randomNote = await evernote.randomNote(req.session.accessToken, guid)
   res.status(200).json({
     note: randomNote,
     edamUserId: req.session.edamUserId,
-    edamShard: req.session.edamShard,
+    edamShard: req.session.edamShard
   })
 }
 
