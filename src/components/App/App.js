@@ -5,7 +5,7 @@ import './style.css'
 
 import Notebooks from '../Notes/Notebooks'
 
-const { fetchCred, appName } = require('../../../config/config')
+const { fetchCred, appName } = require('../../config/config')
 
 class App extends Component {
   constructor(props) {

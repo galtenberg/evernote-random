@@ -1,11 +1,10 @@
 import React, { Component } from 'react'
-
 import Notebook from './Notebook'
 import Note from './Note'
 
 const isString = require('is-string')
 
-const { fetchCred, j } = require('../../../config/config')
+const { fetchCred, j } = require('../../config/config')
 
 function secondsToHms(d) {
   d = Number(d)

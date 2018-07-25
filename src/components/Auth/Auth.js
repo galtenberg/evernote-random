@@ -1,9 +1,7 @@
 import React, { Component } from 'react'
 import classnames from 'classnames'
 
-const { fetchCred } = require('../../../config/config')
-
-import './style.css'
+const { fetchCred } = require('../../config/config')
 
 export default class Auth extends Component {
   async componentDidMount() {
