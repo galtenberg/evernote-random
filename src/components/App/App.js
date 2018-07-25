@@ -5,7 +5,7 @@ import './style.css'
 
 import Notebooks from '../Notes/Notebooks'
 
-const { fetchCred, appName } = require('../../../config/config')
+const { fetchCred, appName } = require('../../config/config')
 
 class App extends Component {
   constructor(props) {
@@ -77,7 +77,10 @@ class App extends Component {
         {notebooks}
         <footer className="Footer">
           A ForteLabs thing. Contributions welcome:{' '}
-          <a href="https://github.com/galtenberg/evernote-random" target="_blank">
+          <a
+            href="https://github.com/galtenberg/evernote-random"
+            target="_blank"
+          >
             Github
           </a>.
         </footer>

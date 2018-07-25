@@ -1,12 +1,12 @@
 import React, { Component } from 'react'
 import classnames from 'classnames'
+import renderHTML from 'react-render-html'
 import './style.css'
 
 const enml = require('enml-js')
 const enml2html = require('../../lib/enml2html') // require('enml2html')
-import renderHTML from 'react-render-html'
 
-const { fetchCred, rootUrl } = require('../../../config/config')
+const { fetchCred, rootUrl } = require('../../config/config')
 
 function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms))
@@ -15,7 +15,11 @@ function sleep(ms) {
 export default class Note extends Component {
   constructor(props) {
     super(props)
-    this.state = { note: null, noteGuid: null, notebookGuid: props.notebookGuid }
+    this.state = {
+      note: null,
+      noteGuid: null,
+      notebookGuid: props.notebookGuid
+    }
   }
 
   componentWillReceiveProps(nextProps) {
@@ -38,13 +42,19 @@ export default class Note extends Component {
     const guid = notebookGuid || ''
     const url = new URL('/randomNote', rootUrl)
     const params = { guid }
-    Object.keys(params).forEach(key => url.searchParams.append(key, params[key]))
+    Object.keys(params).forEach(key =>
+      url.searchParams.append(key, params[key])
+    )
 
     var note
     for (var i = 0; i < 3; i++) {
       const response = await fetch(url, fetchCred)
       note = await response.json()
-      if (note && note.note && (!note.note.errorCode || note.note.errorCode === 404)) {
+      if (
+        note &&
+        note.note &&
+        (!note.note.errorCode || note.note.errorCode === 404)
+      ) {
         break
       }
       await sleep(500)

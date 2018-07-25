@@ -1,11 +1,10 @@
 import React, { Component } from 'react'
-
 import Notebook from './Notebook'
 import Note from './Note'
 
 const isString = require('is-string')
 
-const { fetchCred, j } = require('../../../config/config')
+const { fetchCred, j } = require('../../config/config')
 
 function secondsToHms(d) {
   d = Number(d)
@@ -19,7 +18,8 @@ function secondsToHms(d) {
   return hDisplay + mDisplay + sDisplay
 }
 
-const randomInt = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min
+const randomInt = (min, max) =>
+  Math.floor(Math.random() * (max - min + 1)) + min
 
 export default class Notebooks extends Component {
   constructor() {
@@ -42,14 +42,15 @@ export default class Notebooks extends Component {
         this.setState({
           notebooks: notebooks,
           notebookGuid:
-            this.state.notebookGuid || notebooks[randomInt(0, notebooks.length)].guid
+            this.state.notebookGuid ||
+            notebooks[randomInt(0, notebooks.length)].guid
         })
       }
     } catch (err) {
       console.log(
-        `Notebooks fetch error ${j(err)}, response ${j(response)}, notebooks ${j(
-          notebooks
-        )}`
+        `Notebooks fetch error ${j(err)}, response ${j(
+          response
+        )}, notebooks ${j(notebooks)}`
       )
       if (notebooks && notebooks.rateLimitDuration)
         this.setState({

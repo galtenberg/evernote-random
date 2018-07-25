@@ -1,9 +1,7 @@
 import React, { Component } from 'react'
 import classnames from 'classnames'
 
-const { fetchCred } = require('../../../config/config')
-
-import './style.css'
+const { fetchCred } = require('../../config/config')
 
 // TODO: Make this class unnecessary, just allow proxy through to api auth/callback
 
@@ -19,6 +17,6 @@ export default class AuthOut extends Component {
       <div className={classnames('Auth', this.props.className)}>
         Redirecting to home...
       </div>
-    );
+    )
   }
 }

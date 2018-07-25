@@ -1,9 +1,7 @@
 import React, { Component } from 'react'
 import classnames from 'classnames'
 
-const { fetchCred } = require('../../../config/config')
-
-import './style.css'
+const { fetchCred } = require('../../config/config')
 
 export default class Auth extends Component {
   async componentDidMount() {
@@ -16,9 +14,12 @@ export default class Auth extends Component {
     return (
       <div className={classnames('Auth', this.props.className)}>
         Redirecting to Evernote Login...
-        <br></br><br></br><hr></hr><br></br>
+        <br />
+        <br />
+        <hr />
+        <br />
         Click <a href="/">here</a> to go back.
       </div>
-    );
+    )
   }
 }
