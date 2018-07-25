@@ -8,7 +8,9 @@ Provides a react client and express server implementation to fetch a random note
   * `config/config.js` Urls show `https://your-glitch-project-name.glitch.me`
   * `src/config/config.js` Urls show `https://your-glitch-project-name.glitch.me`
   * `server/index.js` `static` and `sendFile` references should be uncommented
-3. Set `key.env` `evernoteKey` and `evernoteSecret` values to your API key
+3. Set `key.env` values:
+  * `evernoteKey` and `evernoteSecret` values to your API key
+  * `HOST=your-glitch-project.glitch.me`
 4. Open Glitch project Advanced Options -> Open Console:
   * `rm -rf build/`
   * `npm run build`
