@@ -26,6 +26,7 @@ export default class Notebooks extends Component {
     super()
     this.state = {
       notebooks: 'Loading notebooks…',
+      notebooksVisible: false,
       notebookGuid: null
     }
   }
@@ -70,7 +71,18 @@ export default class Notebooks extends Component {
     this.setState({ notebookGuid })
   }
 
-  renderNotebooks = notebooks =>
+  renderNotebooks = () => {
+    if (!this.state.notebooksVisible) return
+    return (
+      <div className="Filter">
+        <p className="fw-500">
+          {this.renderNotebooksContent(this.state.notebooks)}
+        </p>
+      </div>
+    )
+  }
+
+  renderNotebooksContent = notebooks =>
     isString(notebooks) ? (
       <span>{notebooks}</span>
     ) : (
@@ -89,9 +101,7 @@ export default class Notebooks extends Component {
   render() {
     return (
       <div>
-        {/* <div className="Filter">
-          <p className="fw-500">{this.renderNotebooks(this.state.notebooks)}</p>
-        </div> */}
+        {this.renderNotebooks()}
         <main role="main">
           <Note notebookGuid={this.state.notebookGuid} />
         </main>
