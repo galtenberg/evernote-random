@@ -24,22 +24,13 @@ class App extends Component {
   }
 
   render() {
-    var authButton, notebooks
-    if (this.state.loggedIn) {
-      authButton = (
-        <Link to="authout">
-          <button>Logout</button>
-        </Link>
-      )
-      notebooks = <Notebooks />
-    } else {
-      authButton = (
-        <Link to="auth">
-          <button>Login</button>
-        </Link>
-      )
-      notebooks = <div>Welcome. Login to see your notebooks.</div>
-    }
+    const linkTo = this.state.loggedIn ? 'authout' : 'auth'
+    const linkButton = this.state.loggedIn ? 'Logout' : 'Login'
+    const notebooks = this.state.loggedIn ? (
+      <Notebooks />
+    ) : (
+      <div>Welcome. Login to see your notebooks.</div>
+    )
 
     return (
       <div className={classnames('App', this.props.className)}>
@@ -62,7 +53,11 @@ class App extends Component {
                   <button>Instructions</button>
                 </a>
               </div>
-              <div>{authButton}</div>
+              <div>
+                <Link to={linkTo}>
+                  <button>{linkButton}</button>
+                </Link>
+              </div>
             </div>
           </div>
         </header>
