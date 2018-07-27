@@ -44,7 +44,14 @@
 /* FOOTER */
 
 .Footer {
+  border-top: 1px solid rgba(0, 0, 0, 0.07);
   color: var(--c-text-light);
   font-size: var(--fs-small-text);
+  padding-top: calc(0.75 * var(--spacer));
   text-align: center;
+}
+
+.Footer a {
+  color: var(--c-text-light) !important;
+  text-decoration: underline !important;
 }

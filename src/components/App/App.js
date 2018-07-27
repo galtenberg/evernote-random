@@ -2,6 +2,11 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import classnames from 'classnames'
 import './style.css'
+import IconLogo from '../ui/IconLogo.js'
+import IconRefresh from '../ui/IconRefresh.js'
+import IconFilter from '../ui/IconFilter.js'
+import IconPerson from '../ui/IconPerson.js'
+import IconInfo from '../ui/IconInfo.js'
 
 import Notebooks from '../Notes/Notebooks'
 
@@ -29,33 +34,53 @@ class App extends Component {
     const notebooks = this.state.loggedIn ? (
       <Notebooks />
     ) : (
-      <div>Welcome. Login to see your notebooks.</div>
+      <div className="Masthead">
+        <div className="Container">
+          <div className="f-childrenCenter">
+            <h2>
+              Hello! <Link to={linkTo}>{linkButton}</Link> to see your
+              Evernotes.
+            </h2>
+          </div>
+        </div>
+      </div>
     )
 
     return (
       <div className={classnames('App', this.props.className)}>
         <header className="Header" role="banner">
           <div className="f f-justifyBetween">
-            <div className="App-logo f f-alignSelfCenter">{appName}</div>
+            <div className="App-logo f f-alignSelfCenter">
+              <IconLogo />
+            </div>
             <div className="f Header-buttons">
               <div>
                 <a href="#">
-                  <button>Play again</button>
+                  <button>
+                    <IconRefresh />Play
+                  </button>
                 </a>
               </div>
               <div>
                 <a href="">
-                  <button>Filter by notebook</button>
+                  <button>
+                    <IconFilter />Filter
+                  </button>
                 </a>
               </div>
               <div>
                 <a href="">
-                  <button>Instructions</button>
+                  <button>
+                    <IconInfo />Appify
+                  </button>
                 </a>
               </div>
               <div>
                 <Link to={linkTo}>
-                  <button>{linkButton}</button>
+                  <button>
+                    <IconPerson />
+                    {linkButton}
+                  </button>
                 </Link>
               </div>
             </div>
@@ -71,7 +96,11 @@ class App extends Component {
         </div> */}
         {notebooks}
         <footer className="Footer">
-          A ForteLabs thing. Contributions welcome:{' '}
+          A{' '}
+          <a href="https://www.fortelabs.co/" target="_blank">
+            ForteLabs
+          </a>{' '}
+          thing. Contributions welcome on{' '}
           <a
             href="https://github.com/galtenberg/evernote-random"
             target="_blank"

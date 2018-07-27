@@ -33,7 +33,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
-    "dev": "npm run start",
+    "dev": "evernoteKey=galtenberg-6463 evernoteSecret=245a76fbd19c833d npm run start",
     "precommit": "lint-staged"
   },
   "lint-staged": {

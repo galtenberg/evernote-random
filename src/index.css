@@ -434,7 +434,6 @@ ul {
 :root {
   --c-body: #eee;
   --c-paper: #fafafa;
-  --c-link: #2dbe60;
   --c-link: hsl(141, 76%, 41%);
   --c-link-bg: hsl(141, 76%, 91%);
   --c-link-visited: #19b751;
@@ -465,6 +464,16 @@ ul {
 .f-alignSelfCenter {
   align-self: center !important;
 }
+.f-childrenCenter {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  min-height: 100%;
+}
+.f-childrenCenter > * {
+  align-items: stretch;
+  align-self: center;
+}
 .h-100 {
   height: 100%;
 }
@@ -480,6 +489,9 @@ ul {
 .p-spacer {
   margin-bottom: calc(0.5 * var(--spacer));
 }
+.c-text-light {
+  color: var(--c-text-light);
+}
 
 /* HTML & BODY */
 
@@ -489,8 +501,8 @@ html {
 
 body {
   color: var(--c-text);
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
-    'Helvetica Neue', Arial, sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue',
+    Arial, sans-serif;
   margin-bottom: calc(2 * var(--spacer));
 }
 
@@ -668,4 +680,49 @@ button {
 .Button--reverse:focus {
   border: initial;
   box-shadow: initial;
+}
+
+/* ICONS */
+
+.u-icon {
+  display: inline-block;
+  fill: currentColor;
+  line-height: 1;
+  margin-left: -2px;
+  margin-right: 2px;
+  max-width: 100%;
+  position: relative;
+  text-align: center;
+  user-select: none;
+
+  & > svg {
+    fill: currentColor;
+    transition: fill 400ms ease;
+  }
+}
+
+/* MASTHEAD */
+
+.Masthead {
+  align-content: center;
+  display: flex;
+  justify-content: center;
+  min-height: 50vh;
+  text-align: center;
+  padding-bottom: 7.5vh;
+}
+
+.Masthead a {
+  text-decoration: underline !important;
+}
+
+.Masthead-note {
+  color: var(--c-text-light);
+  padding-top: calc(0.75 * var(--spacer));
+  text-align: center;
+}
+
+.Masthead-note a {
+  color: var(--c-text-light) !important;
+  text-decoration: underline !important;
 }
