@@ -22,11 +22,10 @@ const randomInt = (min, max) =>
   Math.floor(Math.random() * (max - min + 1)) + min
 
 export default class Notebooks extends Component {
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
     this.state = {
       notebooks: 'Loading notebooks…',
-      notebooksVisible: false,
       notebookGuid: null
     }
   }
@@ -59,6 +58,13 @@ export default class Notebooks extends Component {
             notebooks.rateLimitDuration
           )}.`
         })
+      else if (notebooks && notebooks.length > 0)
+        this.setState({
+          notebooks: notebooks,
+          notebookGuid:
+            this.state.notebookGuid ||
+            notebooks[randomInt(0, notebooks.length)].guid
+        })
       else
         this.setState({
           notebooks:
@@ -72,7 +78,7 @@ export default class Notebooks extends Component {
   }
 
   renderNotebooks = () => {
-    if (!this.state.notebooksVisible) return
+    if (!this.props.notebooksActive || !this.props.loggedIn) return
     return (
       <div className="Filter">
         <p className="fw-500">
