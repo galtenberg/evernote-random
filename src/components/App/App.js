@@ -2,7 +2,8 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import classnames from 'classnames'
 import './style.css'
-
+import Header from './Header'
+import Footer from './Footer'
 import Notebooks from '../Notes/Notebooks'
 
 const { fetchCred, appName } = require('../../config/config')
@@ -10,7 +11,7 @@ const { fetchCred, appName } = require('../../config/config')
 class App extends Component {
   constructor(props) {
     super(props)
-    this.state = { loggedIn: false }
+    this.state = { loggedIn: false, notebooksActive: false }
   }
 
   async componentWillMount() {
@@ -23,23 +24,23 @@ class App extends Component {
     this.setState({ loggedIn: false })
   }
 
-  render() {
-    var authButton, notebooks
-    if (this.state.loggedIn) {
-      authButton = <Link to='authout'><button>Logout</button></Link>
-      notebooks = <Notebooks/>
-    } else {
-      authButton = <Link to='auth'><button>Login</button></Link>
-      notebooks = <div>Welcome. Login to see your notebooks.</div>
-    }
+  notebooksToggle = () => {
+    this.setState({ notebooksActive: !this.state.notebooksActive })
+  }
 
+  render() {
     return (
       <div className={classnames('App', this.props.className)}>
-        <b>{ appName }</b> {authButton}
-
-        <hr/>
-
-        {notebooks}
+        <Header
+          notebooksToggle={this.notebooksToggle}
+          loggedIn={this.state.loggedIn}
+          appName={this.props.appName}
+        />
+        <Notebooks
+          loggedIn={this.state.loggedIn}
+          notebooksActive={this.state.notebooksActive}
+        />
+        <Footer />
       </div>
     )
   }

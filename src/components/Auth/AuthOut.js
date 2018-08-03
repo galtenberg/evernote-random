@@ -17,6 +17,6 @@ export default class AuthOut extends Component {
       <div className={classnames('Auth', this.props.className)}>
         Redirecting to home...
       </div>
-    );
+    )
   }
 }
