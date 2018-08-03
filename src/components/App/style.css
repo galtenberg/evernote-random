@@ -1,21 +1,66 @@
 .App {
-  text-align: center;
-  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
-  margin-top: 10px;
 }
 
-.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white;
+.App-logo {
+  font-size: 1.15em;
+  font-weight: 800;
+  text-transform: uppercase;
 }
-
-.App-intro {
-  font-size: large;
+.App-logo a {
+  color: var(--c-text);
+}
+.App-logo span {
+  color: var(--c-link);
+  margin-left: 2px;
+  margin-right: 0;
+  transform: translateY(5px);
 }
 
 @keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* HEADER & DIALOGUES */
+
+.Header,
+.Filter {
+  padding: 1.25rem 1.5rem;
+}
+
+.Header-buttons div + div {
+  margin-left: 0.4rem;
+}
+
+.Filter,
+.SaveInstructions {
+  /* background-color: rgba(0, 0, 0, 0.025); */
+  border-top: 1px solid var(--c-rule-dark);
+  border-bottom: 1px solid var(--c-rule-dark);
+  padding: 2rem 1.25rem 1.5rem;
+}
+
+.SaveInstructions {
+  background-color: rgba(255, 225, 141, 1);
+  background-color: rgba(255, 238, 68, 0.7);
+  border: initial;
+}
+
+/* FOOTER */
+
+.Footer {
+  border-top: 1px solid rgba(0, 0, 0, 0.07);
+  color: var(--c-text-light);
+  font-size: var(--fs-small-text);
+  padding-top: calc(0.75 * var(--spacer));
+  text-align: center;
+}
+
+.Footer a {
+  color: var(--c-text-light) !important;
+  text-decoration: underline !important;
 }

@@ -1,4 +1,4 @@
-module.exports = (auth_routes) => {
+module.exports = auth_routes => {
   const auth = require('../controllers/auth')
 
   auth_routes.get('/en-auth/new', auth.new)

@@ -13,10 +13,19 @@ export default class Auth extends Component {
   render() {
     return (
       <div className={classnames('Auth', this.props.className)}>
-        Redirecting to Evernote Login...
-        <br></br><br></br><hr></hr><br></br>
-        Click <a href="/">here</a> to go back.
+        <div className="Masthead">
+          <div className="Container">
+            <div className="f-childrenCenter">
+              <div>
+                <h2>Redirecting to Evernote Login…</h2>
+                <p className="Masthead-note">
+                  <a href="/">Click here</a> to go back.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-    );
+    )
   }
 }

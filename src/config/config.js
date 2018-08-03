@@ -11,5 +11,5 @@ module.exports = {
   appName: 'RandomNote',
   debug: debug,
   j: JSON.stringify,
-  fetchCred: { credentials: 'same-origin' },
+  fetchCred: { credentials: 'same-origin' }
 }

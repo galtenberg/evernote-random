@@ -2,6 +2,10 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import classnames from 'classnames'
 import './style.css'
+import IconRandom from '../ui/IconRandom.js'
+import IconFilter from '../ui/IconFilter.js'
+import IconPerson from '../ui/IconPerson.js'
+import IconInfo from '../ui/IconInfo.js'
 
 import Notebooks from '../Notes/Notebooks'
 
@@ -24,22 +28,87 @@ class App extends Component {
   }
 
   render() {
-    var authButton, notebooks
-    if (this.state.loggedIn) {
-      authButton = <Link to='authout'><button>Logout</button></Link>
-      notebooks = <Notebooks/>
-    } else {
-      authButton = <Link to='auth'><button>Login</button></Link>
-      notebooks = <div>Welcome. Login to see your notebooks.</div>
-    }
+    const linkTo = this.state.loggedIn ? 'authout' : 'auth'
+    const linkButton = this.state.loggedIn ? 'Logout' : 'Login'
+    const notebooks = this.state.loggedIn ? (
+      <Notebooks />
+    ) : (
+      <div className="Masthead">
+        <div className="Container">
+          <div className="f-childrenCenter">
+            <h2>
+              Hello! <Link to={linkTo}>{linkButton}</Link> to see your
+              Evernotes.
+            </h2>
+          </div>
+        </div>
+      </div>
+    )
 
     return (
       <div className={classnames('App', this.props.className)}>
-        <b>{ appName }</b> {authButton}
-
-        <hr/>
-
+        <header className="Header" role="banner">
+          <div className="f f-justifyBetween">
+            <div className="App-logo f f-alignSelfCenter">
+              <a href="#">
+                {appName}
+                <IconRandom />
+              </a>
+            </div>
+            <div className="f Header-buttons">
+              <div />
+              <div>
+                <a href="">
+                  <button>
+                    <IconFilter />Filter
+                  </button>
+                </a>
+              </div>
+              <div>
+                <a href="">
+                  <button>
+                    <IconInfo />Appify
+                  </button>
+                </a>
+              </div>
+              <div>
+                <Link to={linkTo}>
+                  <button>
+                    <IconPerson />
+                    {linkButton}
+                  </button>
+                </Link>
+              </div>
+            </div>
+          </div>
+        </header>
+        {/* <div className="SaveInstructions">
+          <div className="Container">
+            <h2 className="Heading p-spacer">
+              You're on a desktop Mac. Here's how you can save this page.
+            </h2>
+            <p>Instructions go here…</p>
+          </div>
+        </div> */}
         {notebooks}
+        <footer className="Footer">
+          A{' '}
+          <a
+            href="https://www.fortelabs.co/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            ForteLabs
+          </a>{' '}
+          thing. Contributions welcome on{' '}
+          <a
+            href="https://github.com/galtenberg/evernote-random"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Github
+          </a>.
+        </footer>
       </div>
     )
   }
