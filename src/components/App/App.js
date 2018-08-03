@@ -2,8 +2,7 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import classnames from 'classnames'
 import './style.css'
-import IconLogo from '../ui/IconLogo.js'
-import IconRefresh from '../ui/IconRefresh.js'
+import IconRandom from '../ui/IconRandom.js'
 import IconFilter from '../ui/IconFilter.js'
 import IconPerson from '../ui/IconPerson.js'
 import IconInfo from '../ui/IconInfo.js'
@@ -51,16 +50,13 @@ class App extends Component {
         <header className="Header" role="banner">
           <div className="f f-justifyBetween">
             <div className="App-logo f f-alignSelfCenter">
-              <IconLogo />
+              <a href="#">
+                {appName}
+                <IconRandom />
+              </a>
             </div>
             <div className="f Header-buttons">
-              <div>
-                <a href="#">
-                  <button>
-                    <IconRefresh />Play
-                  </button>
-                </a>
-              </div>
+              <div />
               <div>
                 <a href="">
                   <button>
@@ -97,13 +93,18 @@ class App extends Component {
         {notebooks}
         <footer className="Footer">
           A{' '}
-          <a href="https://www.fortelabs.co/" target="_blank">
+          <a
+            href="https://www.fortelabs.co/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             ForteLabs
           </a>{' '}
           thing. Contributions welcome on{' '}
           <a
             href="https://github.com/galtenberg/evernote-random"
             target="_blank"
+            rel="noopener noreferrer"
           >
             Github
           </a>.

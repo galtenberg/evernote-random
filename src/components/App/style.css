@@ -2,9 +2,18 @@
 }
 
 .App-logo {
-  color: var(--c-link);
   font-size: 1.15em;
-  font-weight: var(--fw-heading);
+  font-weight: 800;
+  text-transform: uppercase;
+}
+.App-logo a {
+  color: var(--c-text);
+}
+.App-logo span {
+  color: var(--c-link);
+  margin-left: 2px;
+  margin-right: 0;
+  transform: translateY(5px);
 }
 
 @keyframes App-logo-spin {
@@ -24,7 +33,7 @@
 }
 
 .Header-buttons div + div {
-  margin-left: 0.333rem;
+  margin-left: 0.4rem;
 }
 
 .Filter,

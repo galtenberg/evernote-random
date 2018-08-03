@@ -102,10 +102,20 @@ export default class Note extends Component {
     }/${this.state.noteGuid}/${this.state.noteGuid}/`
     return (
       <div className="Note-openLink">
-        <a href={link} className="Button Button--reverse" target="_blank">
+        <a
+          href={link}
+          className="Button Button--reverse"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           Evernote Web
         </a>
-        <a href={appLink} className="Button Button--reverse" target="_blank">
+        <a
+          href={appLink}
+          className="Button Button--reverse"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           Evernote App
         </a>
       </div>
