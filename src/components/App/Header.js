@@ -29,13 +29,14 @@ export default class Header extends Component {
                 </button>
               </a>
             </div>
-            <div>
+            {/*<div>
               <a href="">
                 <button>
                   <IconInfo />Appify
                 </button>
               </a>
             </div>
+            */}
             <div>
               <Link to={loginLink}>
                 <button>
