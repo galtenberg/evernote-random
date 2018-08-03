@@ -187,9 +187,9 @@ select {
  */
 
 button,
-[type='button'],
-[type='reset'],
-[type='submit'] {
+[type="button"],
+[type="reset"],
+[type="submit"] {
   -webkit-appearance: button;
 }
 
@@ -198,9 +198,9 @@ button,
  */
 
 button::-moz-focus-inner,
-[type='button']::-moz-focus-inner,
-[type='reset']::-moz-focus-inner,
-[type='submit']::-moz-focus-inner {
+[type="button"]::-moz-focus-inner,
+[type="reset"]::-moz-focus-inner,
+[type="submit"]::-moz-focus-inner {
   border-style: none;
   padding: 0;
 }
@@ -210,9 +210,9 @@ button::-moz-focus-inner,
  */
 
 button:-moz-focusring,
-[type='button']:-moz-focusring,
-[type='reset']:-moz-focusring,
-[type='submit']:-moz-focusring {
+[type="button"]:-moz-focusring,
+[type="reset"]:-moz-focusring,
+[type="submit"]:-moz-focusring {
   outline: 1px dotted ButtonText;
 }
 
@@ -261,8 +261,8 @@ textarea {
  * 2. Remove the padding in IE 10.
  */
 
-[type='checkbox'],
-[type='radio'] {
+[type="checkbox"],
+[type="radio"] {
   box-sizing: border-box; /* 1 */
   padding: 0; /* 2 */
 }
@@ -271,8 +271,8 @@ textarea {
  * Correct the cursor style of increment and decrement buttons in Chrome.
  */
 
-[type='number']::-webkit-inner-spin-button,
-[type='number']::-webkit-outer-spin-button {
+[type="number"]::-webkit-inner-spin-button,
+[type="number"]::-webkit-outer-spin-button {
   height: auto;
 }
 
@@ -281,7 +281,7 @@ textarea {
  * 2. Correct the outline style in Safari.
  */
 
-[type='search'] {
+[type="search"] {
   -webkit-appearance: textfield; /* 1 */
   outline-offset: -2px; /* 2 */
 }
@@ -290,7 +290,7 @@ textarea {
  * Remove the inner padding in Chrome and Safari on macOS.
  */
 
-[type='search']::-webkit-search-decoration {
+[type="search"]::-webkit-search-decoration {
   -webkit-appearance: none;
 }
 
@@ -423,7 +423,7 @@ ul {
  * might still respond to pointer events.
  */
 
-[tabindex='-1']:focus {
+[tabindex="-1"]:focus {
   outline: none !important;
 }
 
@@ -434,21 +434,26 @@ ul {
 :root {
   --c-body: #eee;
   --c-paper: #fafafa;
-  --c-link: #2dbe60;
   --c-link: hsl(141, 76%, 41%);
   --c-link-bg: hsl(141, 76%, 91%);
   --c-link-visited: #19b751;
   --c-text: #222;
   --c-text-light: #999;
   --c-rule: #e2e2e2;
-  --c-rule-dark: #ddd;
+  --c-rule-dark: #ccc;
 
   --spacer: 2rem;
   --container: 800px;
 
   --fs-small-text: 0.7em;
   --fs-heading: 1.5em;
-  --fw-heading: 500;
+
+  --fw-400: 400;
+  --fw-500: 500;
+  --fw-600: 600;
+  --fw-600: 600;
+  --fw-700: 700;
+  --fw-800: 800;
 }
 
 /* UTILS */
@@ -465,6 +470,16 @@ ul {
 .f-alignSelfCenter {
   align-self: center !important;
 }
+.f-childrenCenter {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  min-height: 100%;
+}
+.f-childrenCenter > * {
+  align-items: stretch;
+  align-self: center;
+}
 .h-100 {
   height: 100%;
 }
@@ -477,8 +492,14 @@ ul {
 .spacer {
   padding-bottom: var(--spacer);
 }
+.m-l1 {
+  margin-left: calc(0.1 * var(--spacer));
+}
 .p-spacer {
   margin-bottom: calc(0.5 * var(--spacer));
+}
+.c-text-light {
+  color: var(--c-text-light);
 }
 
 /* HTML & BODY */
@@ -489,8 +510,8 @@ html {
 
 body {
   color: var(--c-text);
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
-    'Helvetica Neue', Arial, sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue",
+    Arial, sans-serif;
   margin-bottom: calc(2 * var(--spacer));
 }
 
@@ -540,7 +561,7 @@ li {
 .Heading,
 .Note-heading {
   font-size: var(--fs-heading);
-  font-weight: var(--fw-heading);
+  font-weight: var(--fw-500);
 }
 
 /* HR */
@@ -668,4 +689,72 @@ button {
 .Button--reverse:focus {
   border: initial;
   box-shadow: initial;
+}
+
+/* ICONS */
+
+.u-icon {
+  display: inline-block;
+  fill: currentColor;
+  line-height: 1;
+  margin-left: -2px;
+  margin-right: 2px;
+  max-width: 100%;
+  position: relative;
+  text-align: center;
+  user-select: none;
+
+  & > svg {
+    fill: currentColor;
+    transition: fill 400ms ease;
+  }
+}
+
+/* MASTHEAD */
+
+.Masthead {
+  align-content: center;
+  display: flex;
+  justify-content: center;
+  min-height: 50vh;
+  text-align: center;
+  padding-bottom: 7.5vh;
+}
+
+.Masthead a {
+  text-decoration: underline !important;
+}
+
+.Masthead-note {
+  color: var(--c-text-light);
+  padding-top: calc(0.75 * var(--spacer));
+  text-align: center;
+}
+
+.Masthead-note a {
+  color: var(--c-text-light) !important;
+  text-decoration: underline !important;
+}
+
+/* FILTER & APPIFY DIALOGUES */
+
+.Filter {
+  /* margin: 0 auto;
+  max-width: 80vw;
+  text-align: center; */
+}
+
+.Filter,
+.SaveInstructions {
+  /* background-color: rgba(0, 0, 0, 0.025); */
+  /* border-top: 1px solid var(--c-rule-dark); */
+  border-bottom: 1px solid var(--c-rule-dark);
+  margin-bottom: calc(2 * var(--spacer));
+  padding: 0 1.25rem 2rem;
+}
+
+.SaveInstructions {
+  background-color: rgba(255, 225, 141, 1);
+  background-color: rgba(255, 238, 68, 0.7);
+  border: initial;
 }

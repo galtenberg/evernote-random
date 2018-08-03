@@ -2,8 +2,8 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import classnames from 'classnames'
 import './style.css'
-
 import Header from './Header'
+import Footer from './Footer'
 import Notebooks from '../Notes/Notebooks'
 
 const { fetchCred, appName } = require('../../config/config')
@@ -34,21 +34,13 @@ class App extends Component {
         <Header
           notebooksToggle={this.notebooksToggle}
           loggedIn={this.state.loggedIn}
-          appName={appName}
+          appName={this.props.appName}
         />
         <Notebooks
           loggedIn={this.state.loggedIn}
           notebooksActive={this.state.notebooksActive}
         />
-        <footer className="Footer">
-          A ForteLabs thing. Contributions welcome:{' '}
-          <a
-            href="https://github.com/galtenberg/evernote-random"
-            target="_blank"
-          >
-            Github
-          </a>.
-        </footer>
+        <Footer />
       </div>
     )
   }

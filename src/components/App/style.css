@@ -2,9 +2,18 @@
 }
 
 .App-logo {
-  color: var(--c-link);
   font-size: 1.15em;
-  font-weight: var(--fw-heading);
+  font-weight: 800;
+  text-transform: uppercase;
+}
+.App-logo a {
+  color: var(--c-text);
+}
+.App-logo span {
+  color: var(--c-link);
+  margin-left: 2px;
+  margin-right: 0;
+  transform: translateY(5px);
 }
 
 @keyframes App-logo-spin {
@@ -16,35 +25,27 @@
   }
 }
 
-/* HEADER & DIALOGUES */
+/* HEADER */
 
-.Header,
-.Filter {
+.Header {
   padding: 1.25rem 1.5rem;
 }
 
 .Header-buttons div + div {
-  margin-left: 0.333rem;
-}
-
-.Filter,
-.SaveInstructions {
-  /* background-color: rgba(0, 0, 0, 0.025); */
-  border-top: 1px solid var(--c-rule-dark);
-  border-bottom: 1px solid var(--c-rule-dark);
-  padding: 2rem 1.25rem 1.5rem;
-}
-
-.SaveInstructions {
-  background-color: rgba(255, 225, 141, 1);
-  background-color: rgba(255, 238, 68, 0.7);
-  border: initial;
+  margin-left: 0.4rem;
 }
 
 /* FOOTER */
 
 .Footer {
+  border-top: 1px solid rgba(0, 0, 0, 0.07);
   color: var(--c-text-light);
   font-size: var(--fs-small-text);
+  padding-top: calc(0.75 * var(--spacer));
   text-align: center;
+}
+
+.Footer a {
+  color: var(--c-text-light) !important;
+  text-decoration: underline !important;
 }

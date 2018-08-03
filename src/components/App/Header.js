@@ -2,6 +2,10 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import classnames from 'classnames'
 import './style.css'
+import IconRandom from '../ui/IconRandom.js'
+import IconFilter from '../ui/IconFilter.js'
+import IconPerson from '../ui/IconPerson.js'
+import IconInfo from '../ui/IconInfo.js'
 
 export default class Header extends Component {
   render() {
@@ -12,27 +16,32 @@ export default class Header extends Component {
       <header className="Header" role="banner">
         <div className="f f-justifyBetween">
           <div className="App-logo f f-alignSelfCenter">
-            {this.props.appName}
+            <a href="#">
+              Randomnote
+              <IconRandom />
+            </a>
           </div>
           <div className="f Header-buttons">
             <div>
-              <a href="#">
-                <button>Play again</button>
-              </a>
-            </div>
-            <div>
               <a onClick={this.props.notebooksToggle}>
-                <button>Filter by notebook</button>
+                <button>
+                  <IconFilter />Filter
+                </button>
               </a>
             </div>
             <div>
               <a href="">
-                <button>Instructions</button>
+                <button>
+                  <IconInfo />Appify
+                </button>
               </a>
             </div>
             <div>
               <Link to={loginLink}>
-                <button>{loginText}</button>
+                <button>
+                  <IconPerson />
+                  {loginText}
+                </button>
               </Link>
             </div>
             {/* <div className="SaveInstructions">

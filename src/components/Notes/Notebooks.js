@@ -68,7 +68,7 @@ export default class Notebooks extends Component {
       else
         this.setState({
           notebooks:
-            'Evernote connection failed. Please press Logout and try logging in again.'
+            'Evernote connection failed. Please logout and try logging in again.'
         })
     }
   }
@@ -81,9 +81,10 @@ export default class Notebooks extends Component {
     if (!this.props.notebooksActive || !this.props.loggedIn) return
     return (
       <div className="Filter">
-        <p className="fw-500">
-          {this.renderNotebooksContent(this.state.notebooks)}
+        <p className="m-l1 c-text-light">
+          Filter random notes based on a notebook:
         </p>
+        {this.renderNotebooksContent(this.state.notebooks)}
       </div>
     )
   }
