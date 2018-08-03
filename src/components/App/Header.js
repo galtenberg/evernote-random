@@ -16,7 +16,7 @@ export default class Header extends Component {
       <header className="Header" role="banner">
         <div className="f f-justifyBetween">
           <div className="App-logo f f-alignSelfCenter">
-            <a href="#">
+            <a onClick={this.props.noteReload}>
               Randomnote
               <IconRandom />
             </a>

@@ -5,6 +5,7 @@
   font-size: 1.15em;
   font-weight: 800;
   text-transform: uppercase;
+  cursor: pointer;
 }
 .App-logo a {
   color: var(--c-text);

@@ -28,11 +28,17 @@ class App extends Component {
     this.setState({ notebooksActive: !this.state.notebooksActive })
   }
 
+  noteReload = () => {
+    /* TODO: Use a formal React mechanism for this */
+    this.setState({ notebooksActive: this.state.notebooksActive })
+  }
+
   render() {
     return (
       <div className={classnames('App', this.props.className)}>
         <Header
           notebooksToggle={this.notebooksToggle}
+          noteReload={this.noteReload}
           loggedIn={this.state.loggedIn}
           appName={this.props.appName}
         />
