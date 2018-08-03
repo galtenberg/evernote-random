@@ -25,13 +25,18 @@ export default class Note extends Component {
   componentWillReceiveProps(nextProps) {
     const note = nextProps.notebookGuid
       ? "<div className='Note-heading'>Loading...</div>"
-      : "<div className='Note-heading'>Select a Notebook above.</div>"
+      : "<div className='Note-heading'>Welcome. Login to see your notebooks.</div>"
+
     this.setState({
       note,
       noteTitle: null,
       noteGuid: null,
       notebookGuid: nextProps.notebookGuid
     })
+  }
+
+  shouldComponentUpdate(nextProps, nextState) {
+    return true
   }
 
   async fetchNote(notebookGuid) {
