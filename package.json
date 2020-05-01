@@ -24,7 +24,8 @@
     "react-dom": "16.4.1",
     "react-render-html": "0.6.0",
     "react-router-dom": "4.3.1",
-    "rxjs": "^5.4.3"
+    "rxjs": "^5.4.3",
+    "snyk": "^1.316.1"
   },
   "scripts": {
     "start": "concurrently \"npm run client\" \"npm run server\"",
@@ -34,7 +35,9 @@
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "dev": "npm run start",
-    "precommit": "lint-staged"
+    "precommit": "lint-staged",
+    "snyk-protect": "snyk protect",
+    "prepublish": "npm run snyk-protect"
   },
   "lint-staged": {
     "src/**/*.{js,json}": [
@@ -57,5 +60,6 @@
   "engines": {
     "node": "10.5"
   },
-  "proxy": "http://localhost:8000"
+  "proxy": "http://localhost:8000",
+  "snyk": true
 }
