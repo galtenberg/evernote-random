@@ -20,8 +20,8 @@
     "node-cache": "4.2.0",
     "nodemon": "1.18.3",
     "query-string": "^5.0.0",
-    "react": "16.4.1",
-    "react-dom": "16.4.1",
+    "react": "16.5.0",
+    "react-dom": "16.5.0",
     "react-render-html": "0.6.0",
     "react-router-dom": "4.3.1",
     "rxjs": "^5.4.3"
