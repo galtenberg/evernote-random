@@ -1,5 +1,9 @@
 Provides a react client and express server implementation to fetch a random note from Evernote API.
 
+## Notice
+
+Hi friends – this project is abandoned and unsupported. Please fork and make an even better version for yourself. Contact Tiago Forte for license options.
+
 ## Remix on Glitch
 
 1. Click Remix: [![Remix on Glitch](https://cdn.glitch.com/2703baf2-b643-4da7-ab91-7ee2a2d00b5b%2Fremix-button.svg)](https://glitch.com/edit/#!/import/github/galtenberg/evernote-random)
