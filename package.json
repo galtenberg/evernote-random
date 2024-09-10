@@ -23,7 +23,7 @@
     "react": "16.4.1",
     "react-dom": "16.4.1",
     "react-render-html": "0.6.0",
-    "react-router-dom": "4.3.1",
+    "react-router-dom": "6.0.0",
     "rxjs": "^5.4.3"
   },
   "scripts": {
